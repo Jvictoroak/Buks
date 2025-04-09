@@ -1,54 +1,20 @@
-/* Reset CSS - Eric Meyer */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); /*Roboto*/
 
-/* HTML5 display-role reset */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
+*{
+  --branco: #ffffff;
+  --preto: #000000;
+  --azul-1: #27548A;
+  --azul-2: #183B4E;
+  --amarelo-1: #DDA853;
+  --bege-1: #F5EEDC;
 
-body {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote::before, blockquote::after,
-q::before, q::after {
-  content: '';
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
 }
 
 
 /*pré definindo algumas classes*/
 .conteudo-1140{width: 1140px; margin: 0 auto; max-width: 90%;}
+
+.texto{font-family: "Roboto", sans-serif;}
+.texto.t1{font: 400 16px/1em "Roboto", sans-serif ;}
+.sub-titulo{}
+.titulo{}

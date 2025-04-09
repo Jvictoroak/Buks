@@ -1,3 +1,6 @@
-*{background-color: #0000;}
-.cabecalho .conteudo{display: flex;}
+.cabecalho {background-color: var(--azul-1);}
+.cabecalho .conteudo{display: flex; justify-content: space-between; align-items: center;}
+.cabecalho .conteudo .imagem-container{height: 100px; width: 200px; background: var(--amarelo-1);}
 .cabecalho .conteudo .menu .navegacao{display: flex;}
+.cabecalho .conteudo .menu .navegacao .pag{padding: 10px 20px; color: var(--branco);} 
+.cabecalho .conteudo .menu .navegacao .pag .texto{ color: var(--branco);} 
