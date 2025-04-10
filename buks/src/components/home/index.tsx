@@ -1,9 +1,10 @@
 import React from 'react'
 import Banner from '../banner'
+import './index.css'
 
 export default function home() {
   return (
-    <>
+    <main className="home">
         <Banner/>
         <section className="sobre">
             <div className="conteudo-1140">
@@ -12,12 +13,16 @@ export default function home() {
                         <div className="imagem-container"><img src="" alt="" className="imagem" /></div>
                     </div>
                     <div className="textos">
-                        <h1 className='titulo t1'>Sobre nós</h1>
-                        <p className='texto t1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.</p>
+                        <div className="titulo t1"><p>Sobre nós</p></div>
+                        <div className="texto t1">
+                           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit voluptatem error facilis distinctio ratione esse ea id asperiores nam rem vel quisquam, commodi harum, a accusantium adipisci itaque veritatis consectetur?</p>
+                           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit voluptatem error facilis distinctio ratione esse ea id asperiores nam rem vel quisquam, commodi harum, a accusantium adipisci itaque veritatis consectetur?</p>
+                           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit voluptatem error facilis distinctio ratione esse ea id asperiores nam rem vel quisquam, commodi harum, a accusantium adipisci itaque veritatis consectetur?</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-    </>
+    </main>
   )
 }

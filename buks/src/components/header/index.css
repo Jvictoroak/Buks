@@ -1,4 +1,4 @@
-.cabecalho {background-color: var(--azul-1);}
+.cabecalho {background-color: var(--azul-1); position: sticky;}
 .cabecalho .conteudo{display: flex; justify-content: space-between; }
 .cabecalho .conteudo .imagem-container{ width: 150px; padding: 20px 0;}
 .cabecalho .conteudo .menu .navegacao{display: flex; height: 100%;}
