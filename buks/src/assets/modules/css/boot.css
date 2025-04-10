@@ -17,4 +17,6 @@
 .texto{font-family: "Roboto", sans-serif;}
 .texto.t1{font: 400 16px/1em "Roboto", sans-serif ;}
 .sub-titulo{}
-.titulo{}
+.sub-titulo{}
+.titulo{font-family: "Roboto", sans-serif;}
+.titulo.h1{ font-size: 16px;}

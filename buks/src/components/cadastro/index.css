@@ -1,0 +1,132 @@
+.container {
+    display: flex;
+    width: 900px;
+    height: 450px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.left-panel {
+    background-color: #51b4a0;
+    color: white;
+    width: 40%;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.left-panel h1 {
+    margin-bottom: 15px;
+}
+
+.left-panel p {
+    margin-bottom: 30px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.sign-in-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    padding: 10px 40px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.sign-in-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.right-panel {
+    background-color: white;
+    width: 60%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right-panel h1 {
+    color: #51b4a0;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #777;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #f5f5f5;
+}
+
+.divider {
+    text-align: center;
+    color: #999;
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    background-color: #f0f2f5;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(81, 180, 160, 0.2);
+}
+
+.sign-up-btn {
+    background-color: #51b4a0;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.sign-up-btn:hover {
+    background-color: #469b89;
+}
+
+.icon {
+    margin-right: 10px;
+}
