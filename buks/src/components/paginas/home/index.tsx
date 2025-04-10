@@ -1,5 +1,5 @@
 import React from 'react'
-import Banner from '../banner'
+import Banner from '../../sections/banner'
 import './index.css'
 
 export default function home() {
