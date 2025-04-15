@@ -12,10 +12,10 @@ function AppContent() {
   const location = useLocation();
   return (
     <>
-      {location.pathname != '/cadastre-se' && <Cabecalho />}
+      {location.pathname != '/cadastro' && <Cabecalho />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cadastre-se" element={<Cadastro />} />
+        <Route path="/cadastro" element={<Cadastro />} />
       </Routes>
       <Rodape />
     </>
