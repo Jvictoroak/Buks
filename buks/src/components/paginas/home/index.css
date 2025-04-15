@@ -1,3 +1,8 @@
-.sobre .conteudo{display: flex; justify-content: space-between; padding: 50px 0 0;}
-.sobre .conteudo .imagens{}
-.sobre .conteudo .imagens .imagem-container{background: var(--amarelo-1); width: 500px; height: 300px;}
+.categoria .conteudo{display: flex; justify-content: space-between; padding: 50px 0 0;}
+.categoria .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;}
+.categoria .conteudo .cards .card{background: var(--azul-1); width: 250px; height: 150px; border-radius: 20px; display: flex; justify-content: center; align-items: center; color: var(--branco);}
+
+.produto .conteudo{ padding: 50px 0 0;}
+.produto .conteudo .titulo{text-align: center;}
+.produto .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;}
+.produto .conteudo .cards .card{border:2px solid var(--azul-1); width: 250px; height: 300px; border-radius: 20px; display: flex; justify-content: center; flex-direction: column; align-items: center; color: var(--branco);}

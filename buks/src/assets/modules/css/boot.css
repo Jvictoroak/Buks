@@ -18,7 +18,7 @@
 .texto{font-family: "Nunito", sans-serif;}
 .texto.t1{font: 500 16px/1em "Nunito", sans-serif ;}
 .sub-titulo{}
-.sub-titulo{}
+.sub-titulo.t1{font: 700 24px/1em "Nunito", sans-serif;}
 .titulo{font-family: "Roboto", sans-serif;}
 .titulo.t1{font: 800 32px/1em "Roboto", sans-serif;}
 .titulo.h1{ font-size: 16px;}
