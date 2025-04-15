@@ -3,6 +3,5 @@
 .categoria .conteudo .cards .card{background: var(--azul-1); width: 250px; height: 150px; border-radius: 20px; display: flex; justify-content: center; align-items: center; color: var(--branco);}
 
 .produto .conteudo{ padding: 50px 0 0;}
-.produto .conteudo .titulo{text-align: center;}
-.produto .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;}
-.produto .conteudo .cards .card{border:2px solid var(--azul-1); width: 250px; height: 300px; border-radius: 20px; display: flex; justify-content: center; flex-direction: column; align-items: center; color: var(--branco);}
+.produto .conteudo .titulo{text-align: center; color: var(--azul-1);}
+.produto .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 40px 0; gap: 40px;}

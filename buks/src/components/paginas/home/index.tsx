@@ -1,5 +1,6 @@
 import React from 'react'
 import Banner from '../../sections/banner'
+import CardProduto from '../../cards/produto'
 import './index.css'
 
 export default function home() {
@@ -23,12 +24,14 @@ export default function home() {
                 <div className="conteudo">
                     <div className="titulo t1"><p>Nossos Produtos</p></div>
                     <div className="cards">
-                        <div className="card">
-                            <div className="imagem-container"><img src="" alt="" className="imagem" /></div>
-                            <div className="sub-titulo t1 nome"><p>Produto</p></div>
-                            <div className="titulo t1 preco"><p>R$ 999,99</p></div>
-                            <div className="botao"><p>VER MAIS</p></div>
-                        </div>
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                        <CardProduto nome='produto' preco={99.99} imagem='' link='' />
                     </div>
                 </div>
             </div>
