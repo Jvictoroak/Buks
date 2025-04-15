@@ -1,6 +1,7 @@
 import React from 'react'
 import Banner from '../../sections/banner'
 import CardProduto from '../../cards/produto'
+import CardAutor from '../../cards/autor' 
 import './index.css'
 
 export default function home() {
@@ -32,6 +33,20 @@ export default function home() {
                         <CardProduto nome='produto' preco={99.99} imagem='' link='' />
                         <CardProduto nome='produto' preco={99.99} imagem='' link='' />
                         <CardProduto nome='produto' preco={99.99} imagem='' link='' />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section className="autores">
+            <div className="conteudo-1140">
+                <div className="conteudo">
+                    <div className="titulo t1"><p>Nossos Autores</p></div>
+                    <div className="cards">
+                        <CardAutor nome='' imagem='' link=''/>
+                        <CardAutor nome='' imagem='' link=''/>
+                        <CardAutor nome='' imagem='' link=''/>
+                        <CardAutor nome='' imagem='' link=''/>
+                        <CardAutor nome='' imagem='' link=''/>
                     </div>
                 </div>
             </div>
