@@ -42,11 +42,11 @@ export default function home() {
                 <div className="conteudo">
                     <div className="titulo t1"><p>Nossos Autores</p></div>
                     <div className="cards">
-                        <CardAutor nome='' imagem='' link=''/>
-                        <CardAutor nome='' imagem='' link=''/>
-                        <CardAutor nome='' imagem='' link=''/>
-                        <CardAutor nome='' imagem='' link=''/>
-                        <CardAutor nome='' imagem='' link=''/>
+                        <CardAutor nome='nome do autor' imagem='' link=''/>
+                        <CardAutor nome='nome do autor' imagem='' link=''/>
+                        <CardAutor nome='nome do autor' imagem='' link=''/>
+                        <CardAutor nome='nome do autor' imagem='' link=''/>
+                        <CardAutor nome='nome do autor' imagem='' link=''/>
                     </div>
                 </div>
             </div>
