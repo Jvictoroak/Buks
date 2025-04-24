@@ -7,6 +7,7 @@ import Cabecalho from './components/sections/header';
 import Rodape from './components/sections/footer';
 import Home from './components/paginas/home';
 import Cadastro from './components/paginas/cadastro';
+import Login from './components/paginas/login';
 
 function AppContent() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cadastro" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Rodape />
     </>
