@@ -1,5 +1,7 @@
 import React from 'react'
 import './index.css'
+import logo from '../../../assets/img/logo.png'
+import { Link } from 'react-router-dom';
 
 function Cadastro() {
     return (
@@ -8,8 +10,11 @@ function Cadastro() {
                 <div className="container">
                     <div className="left-panel titulo h1">
                         <h1>Bem-vindo!</h1>
-                        <p>Para continuar conectado conosco<br />por favor entre com suas informações pessoais</p>
-                        <button className="entrar-btn">ENTRAR</button>
+                        <p>Bom ter você aqui conosco,<br />por favor cadastre suas informações pessoais</p>
+                        <a href='' className="imagem-container logo">
+                            <img src={logo} className='imagem' />
+                        </a>
+                        <Link to="/Login" className='link-login'><p>Ir para o Login</p></Link>
                     </div>
                     <div className="right-panel titulo h1">
                         <h1>Criar Conta</h1>
