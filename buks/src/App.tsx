@@ -13,7 +13,7 @@ function AppContent() {
   const location = useLocation();
   return (
     <>
-      {location.pathname != '/cadastro' && <Cabecalho />}
+      {((location.pathname != '/cadastro') && (location.pathname != '/login')) && <Cabecalho />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cadastro" element={<Cadastro />} />

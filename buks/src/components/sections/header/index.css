@@ -1,8 +1,8 @@
-.cabecalho {background-color: var(--azul-1); position: sticky;}
+.cabecalho {background-color: var(--laranja-1); position: sticky;}
 .cabecalho .conteudo{display: flex; justify-content: space-between; }
 .cabecalho .conteudo .imagem-container{ width: 150px; padding: 20px 0;}
 .cabecalho .conteudo .menu .navegacao{display: flex; height: 100%;}
 .cabecalho .conteudo .menu .navegacao .pag{padding: 10px 20px; color: var(--branco); display: flex; transition: .4s; cursor: pointer; height: 100%; align-items: center; justify-content: center; height: 100%; box-sizing: border-box;} 
 .cabecalho .conteudo .menu .navegacao .pag:hover,
-.cabecalho .conteudo .menu .navegacao .pag.ativo{background: var(--amarelo-1);} 
+.cabecalho .conteudo .menu .navegacao .pag.ativo{background: var(--verde-1);} 
 .cabecalho .conteudo .menu .navegacao .pag .texto{ color: var(--branco);}

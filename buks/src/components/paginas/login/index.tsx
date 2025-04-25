@@ -14,7 +14,7 @@ function Login() {
                         <a href='' className="imagem-container logo">
                             <img src={logo} className='imagem' />
                         </a>
-                        <Link to="/Cadastro" className='link-cadastro'><p>Ir para o Cadastro</p></Link>
+                        <Link to="/cadastro" className='link-cadastro'><p>Ir para o Cadastro</p></Link>
                     </div>
                     <div className="right-panel titulo h1">
                         <h1>Login</h1>

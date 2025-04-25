@@ -1,6 +1,6 @@
-.card-produto{border:2px solid var(--azul-1); width: 250px; border-radius: 20px; display: flex; justify-content: center; flex-direction: column; align-items: center; color: var(--azul-1); overflow: hidden; padding: 0 0 20px 0;}
-.card-produto .imagem-container{background: var(--amarelo-1); height: 250px; width: 100%;}
+.card-produto{border:2px solid var(--laranja-1); width: 250px; border-radius: 20px; display: flex; justify-content: center; flex-direction: column; align-items: center; color: var(--laranja-1); overflow: hidden; padding: 0 0 20px 0;}
+.card-produto .imagem-container{background: var(--verde-1); height: 250px; width: 100%;}
 .card-produto .nome{padding: 15px 0 0;}
 .card-produto .preco{padding: 15px 0 0;}
-.card-produto .botao{width: 90%; height: 35px; border-radius: 20px; background: var(--amarelo-1); color: var(--branco); display: flex; justify-content: center; align-items: center; margin: 15px 0 0; cursor: pointer; transition: .4s;}
-.card-produto .botao:hover{background: var(--azul-1);}
+.card-produto .botao{width: 90%; height: 35px; border-radius: 20px; background: var(--verde-1); color: var(--branco); display: flex; justify-content: center; align-items: center; margin: 15px 0 0; cursor: pointer; transition: .4s;}
+.card-produto .botao:hover{background: var(--laranja-1);}

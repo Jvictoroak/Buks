@@ -1,12 +1,12 @@
 .categoria .conteudo{display: flex; justify-content: space-between; padding: 50px 0 0;}
 .categoria .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;}
-.categoria .conteudo .cards .card{background: var(--azul-1); width: 250px; height: 150px; border-radius: 20px; display: flex; justify-content: center; align-items: center; color: var(--branco);}
+.categoria .conteudo .cards .card{background: var(--laranja-1); width: 250px; height: 150px; border-radius: 20px; display: flex; justify-content: center; align-items: center; color: var(--branco);}
 
 .produto .conteudo{ padding: 50px 0 0;}
-.produto .conteudo .titulo{text-align: center; color: var(--azul-1);}
+.produto .conteudo .titulo{text-align: center; color: var(--laranja-1);}
 .produto .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 40px 0; gap: 40px;}
 
-.autores{background: var(--azul-1);}
+.autores{background: var(--laranja-1);}
 .autores .conteudo{ padding: 50px 0 0;}
 .autores .conteudo .titulo{text-align: center; color: var(--branco);}
 .autores .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 40px 0; gap: 40px;}

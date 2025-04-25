@@ -14,7 +14,7 @@ function Cadastro() {
                         <a href='' className="imagem-container logo">
                             <img src={logo} className='imagem' />
                         </a>
-                        <Link to="/Login" className='link-login'><p>Ir para o Login</p></Link>
+                        <Link to="/login" className='link-login'><p>Ir para o Login</p></Link>
                     </div>
                     <div className="right-panel titulo h1">
                         <h1>Cadastro</h1>
