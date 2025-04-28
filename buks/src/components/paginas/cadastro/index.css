@@ -1,4 +1,4 @@
-.cadastro{position: fixed;top: 50%;left: 50%;transform: translate(-50%, -50%);}
+.cadastro{ width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center; background: #3a5341; }
 
 .container {display: flex;height: 450px;box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);border-radius: 8px;overflow: hidden;}
 
@@ -26,6 +26,6 @@
 
 .cadastrar-btn {background-color: var(--laranja-1);color: var(--branco);border: none;border-radius: 20px;padding: 12px;width: 100%;cursor: pointer;margin-top: 15px;font-size: 14px;transition: all 0.3s ease;}
 
-.cadastrar-btn:hover {background-color: var(--laranja-2);}
+.cadastrar-btn:hover {background-color: var(--verde-2);}
 
 .icon {margin-right: 10px;}
