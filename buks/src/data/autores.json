@@ -1,0 +1,52 @@
+[
+    {
+      "nome": "Autor A",
+      "imagem": "Autor-a.jpg",
+      "descricao": "Descrição do Autor A"
+    },
+    {
+      "nome": "Autor B",
+      "imagem": "Autor-b.jpg",
+      "descricao": "Descrição do Autor B"
+    },
+    {
+      "nome": "Autor C",
+      "imagem": "Autor-c.jpg",
+      "descricao": "Descrição do Autor C"
+    },
+    {
+      "nome": "Autor D",
+      "imagem": "Autor-d.jpg",
+      "descricao": "Descrição do Autor D"
+    },
+    {
+      "nome": "Autor E",
+      "imagem": "Autor-e.jpg",
+      "descricao": "Descrição do Autor E"
+    },
+    {
+      "nome": "Autor F",
+      "imagem": "Autor-f.jpg",
+      "descricao": "Descrição do Autor F"
+    },
+    {
+      "nome": "Autor G",
+      "imagem": "Autor-g.jpg",
+      "descricao": "Descrição do Autor G"
+    },
+    {
+      "nome": "Autor H",
+      "imagem": "Autor-h.jpg",
+      "descricao": "Descrição do Autor H"
+    },
+    {
+      "nome": "Autor I",
+      "imagem": "Autor-i.jpg",
+      "descricao": "Descrição do Autor I"
+    },
+    {
+      "nome": "Autor J",
+      "imagem": "Autor-j.jpg",
+      "descricao": "Descrição do Autor J"
+    }
+  ]

@@ -1,0 +1,62 @@
+[
+    {
+      "nome": "Produto A",
+      "preco": 99.99,
+      "imagem": "produto-a.jpg",
+      "descricao": "Descrição do Produto A"
+    },
+    {
+      "nome": "Produto B",
+      "preco": 199.99,
+      "imagem": "produto-b.jpg",
+      "descricao": "Descrição do Produto B"
+    },
+    {
+      "nome": "Produto C",
+      "preco": 299.99,
+      "imagem": "produto-c.jpg",
+      "descricao": "Descrição do Produto C"
+    },
+    {
+      "nome": "Produto D",
+      "preco": 399.99,
+      "imagem": "produto-d.jpg",
+      "descricao": "Descrição do Produto D"
+    },
+    {
+      "nome": "Produto E",
+      "preco": 499.99,
+      "imagem": "produto-e.jpg",
+      "descricao": "Descrição do Produto E"
+    },
+    {
+      "nome": "Produto F",
+      "preco": 599.99,
+      "imagem": "produto-f.jpg",
+      "descricao": "Descrição do Produto F"
+    },
+    {
+      "nome": "Produto G",
+      "preco": 699.99,
+      "imagem": "produto-g.jpg",
+      "descricao": "Descrição do Produto G"
+    },
+    {
+      "nome": "Produto H",
+      "preco": 799.99,
+      "imagem": "produto-h.jpg",
+      "descricao": "Descrição do Produto H"
+    },
+    {
+      "nome": "Produto I",
+      "preco": 899.99,
+      "imagem": "produto-i.jpg",
+      "descricao": "Descrição do Produto I"
+    },
+    {
+      "nome": "Produto J",
+      "preco": 999.99,
+      "imagem": "produto-j.jpg",
+      "descricao": "Descrição do Produto J"
+    }
+  ]

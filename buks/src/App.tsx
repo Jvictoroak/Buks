@@ -8,6 +8,7 @@ import Rodape from './components/sections/footer';
 import Home from './components/paginas/home';
 import Cadastro from './components/paginas/cadastro';
 import Login from './components/paginas/login';
+import ProdutoInterna from './components/paginas/produto-interna';
 
 function AppContent() {
   const location = useLocation();
@@ -15,9 +16,10 @@ function AppContent() {
     <>
       {((location.pathname != '/cadastro') && (location.pathname != '/login')) && <Cabecalho />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Home />}/>
+        <Route path="/cadastro" element={<Cadastro/>}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/produtos/:produtoId" element={<ProdutoInterna preco={0} nome='teste' imagem=''/>} />
       </Routes>
       <Rodape />
     </>
