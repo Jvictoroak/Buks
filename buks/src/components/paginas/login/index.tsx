@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './index.css'
 import logo from '../../../assets/img/logo.png'
 import { Link } from 'react-router-dom';
 
 function Login() {
+
+    const [email, serEmail] = useState('');
+    const [senha, serSenha] = useState('');
+
+    const login = () => {
+        console.log("login do sistema");
+        console.log(email);
+        console.log(senha);
+
+    }
+        
+
     return (
         <div className="login">
             <div className='conteudo-1140'>
@@ -20,14 +32,14 @@ function Login() {
                         <h1>Login</h1>
                         <form>
                             <div className="form-group">
-                                <h2 className="subtitulo">Nome</h2>
-                                <input id="nome" type="text" className="form-control" placeholder="" required />
+                                <h2 className="subtitulo">Email</h2>
+                                <input id="nome" type="text" className="form-control" onChange={(e) => serEmail(e.target.value)} required />
                             </div>
                             <div className="form-group">
                                 <h2 className="subtitulo">Senha</h2>
-                                <input id="senha" type="password" className="form-control" placeholder="" required />
+                                <input id="senha" type="password" className="form-control" onChange={(e) => serSenha(e.target.value)} required />
                             </div>
-                            <button type="submit" className="entrar-btn">ENTRAR</button>
+                            <button onClick={login} type="submit" className="entrar-btn">ENTRAR</button>
                         </form>
                     </div>
                 </div>
