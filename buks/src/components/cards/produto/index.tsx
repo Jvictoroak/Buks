@@ -13,7 +13,7 @@ interface CardProdutoProps {
 
 export default function cardProduto({nome, preco, imagem, link}: CardProdutoProps) {
   return (
-    <Link to={'/' + toUrlFriendly(nome)} className="card-produto">
+    <Link to={'/produtos/' + toUrlFriendly(nome)} className="card-produto">
         <div className="imagem-container"><img src={imagem} alt="" className="imagem" /></div>
         <div className="sub-titulo t1 nome"><p>{nome}</p></div>
         <div className="titulo t1 preco"><p>R$ {preco}</p></div>

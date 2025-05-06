@@ -1,0 +1,5 @@
+.produtos-interna{}
+.produtos-interna .conteudo{display: flex;justify-content: space-between; padding: 60px 0;}
+.produtos-interna .conteudo .imagens .imagem-container{width: 400px; height: 500px; background: var(--verde-1); border-radius: 20px;}
+.produtos-interna .conteudo .textos .botao.comprar{background: var(--laranja-1); color: var(--branco); text-align: center; padding: 10px 20px; border-radius: 20px; transition: .4s; cursor: pointer;}
+.produtos-interna .conteudo .textos .botao.comprar:hover{background: var(--verde-1);}

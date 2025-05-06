@@ -8,6 +8,7 @@ import Rodape from './components/sections/footer';
 import Home from './components/paginas/home';
 import Cadastro from './components/paginas/cadastro';
 import Login from './components/paginas/login';
+import Produtos from './components/paginas/produto';
 import ProdutoInterna from './components/paginas/produto-interna';
 
 function AppContent() {
@@ -19,7 +20,8 @@ function AppContent() {
         <Route path="/" element={<Home />}/>
         <Route path="/cadastro" element={<Cadastro/>}/>
         <Route path="/login" element={<Login />}/>
-        <Route path="/produtos/:produtoId" element={<ProdutoInterna preco={0} nome='teste' imagem=''/>} />
+        <Route path="/produtos" element={<Produtos/>} />
+        <Route path="/produtos/:produtoId" element={<ProdutoInterna/>} />
       </Routes>
       <Rodape />
     </>
