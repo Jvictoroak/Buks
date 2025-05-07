@@ -2,17 +2,33 @@ import React, { useState } from 'react'
 import './index.css'
 import logo from '../../../assets/img/logo.png'
 import { Link } from 'react-router-dom';
+import login_service from "../login/login_service";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
-    const [email, serEmail] = useState('');
-    const [senha, serSenha] = useState('');
+    const navigate = useNavigate();
+
+    const [email,setEmail] = useState('');
+    const [senha,setSenha] = useState('');
 
     const login = () => {
         console.log("login do sistema");
         console.log(email);
         console.log(senha);
 
+        login_service.login(email, senha).then(result => {
+            console.log(result);
+
+            //redireciona
+            if (result.token) {
+                localStorage.setItem('token',result.token);
+                navigate(`/lista-usuario`);
+            }
+            
+            //manda mensagem de erro pro usuário
+
+        });
     }
         
 
@@ -33,11 +49,11 @@ function Login() {
                         <form>
                             <div className="form-group">
                                 <h2 className="subtitulo">Email</h2>
-                                <input id="nome" type="text" className="form-control" onChange={(e) => serEmail(e.target.value)} required />
+                                <input id="nome" type="text" className="form-control" onChange={(e) => setEmail(e.target.value)} required />
                             </div>
                             <div className="form-group">
                                 <h2 className="subtitulo">Senha</h2>
-                                <input id="senha" type="password" className="form-control" onChange={(e) => serSenha(e.target.value)} required />
+                                <input id="senha" type="password" className="form-control" onChange={(e) => setSenha(e.target.value)} required />
                             </div>
                             <button onClick={login} type="submit" className="entrar-btn">ENTRAR</button>
                         </form>
