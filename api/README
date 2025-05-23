@@ -1,1 +1,5 @@
+# dentro de /api
+
 npm install express mysql2 cors
+npm install 
+npm start
