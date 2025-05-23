@@ -3,60 +3,70 @@
       "nome": "Produto A",
       "preco": 99.99,
       "imagem": "produto-a.jpg",
-      "descricao": "Descrição do Produto A"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto B",
       "preco": 199.99,
       "imagem": "produto-b.jpg",
-      "descricao": "Descrição do Produto B"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto C",
       "preco": 299.99,
       "imagem": "produto-c.jpg",
-      "descricao": "Descrição do Produto C"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto D",
       "preco": 399.99,
       "imagem": "produto-d.jpg",
-      "descricao": "Descrição do Produto D"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto E",
       "preco": 499.99,
       "imagem": "produto-e.jpg",
-      "descricao": "Descrição do Produto E"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto F",
       "preco": 599.99,
       "imagem": "produto-f.jpg",
-      "descricao": "Descrição do Produto F"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto G",
       "preco": 699.99,
       "imagem": "produto-g.jpg",
-      "descricao": "Descrição do Produto G"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto H",
       "preco": 799.99,
       "imagem": "produto-h.jpg",
-      "descricao": "Descrição do Produto H"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto I",
       "preco": 899.99,
       "imagem": "produto-i.jpg",
-      "descricao": "Descrição do Produto I"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     },
     {
       "nome": "Produto J",
       "preco": 999.99,
       "imagem": "produto-j.jpg",
-      "descricao": "Descrição do Produto J"
+      "descricao": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat ipsum eaque excepturi veritatis tempora fugiat voluptas architecto corrupti mollitia, aspernatur nisi sunt incidunt qui. At nesciunt aut velit totam? Aspernatur.",
+      "estoque": 1
     }
   ]

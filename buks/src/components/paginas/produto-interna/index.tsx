@@ -12,6 +12,7 @@ function ProdutoInterna() {
   if (!produto) {
     return (<></>);
   }
+
   return (
     <section className="produtos-interna">
       <div className="conteudo-1140">
@@ -24,6 +25,8 @@ function ProdutoInterna() {
             <div className="textos">
               <div className="sub-titulo t1 nome"><p>{produto.nome}</p></div>
               <div className="texto t1 descricao"><p>{produto.descricao}</p></div>
+              <div className="texto t2 descricao"><p>{produto.descricao}</p></div>
+              <div className="texto t1 estoque"><p>Estoque: {produto.estoque}</p></div>
               <div className="titulo t1 preco"><p>R$ {produto.preco}</p></div>
               <div className="botao comprar"><p>Comprar</p></div>
             </div>
