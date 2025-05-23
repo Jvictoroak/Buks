@@ -5,7 +5,11 @@ import produtos from '../../../data/produtos.json'
 import { toUrlFriendly } from '../../../utils/utils'
 
 
+
+
 function ProdutoInterna() {
+
+
   const { produtoId } = useParams();
 
   const produto = produtos.find((p) => toUrlFriendly(p.nome) === produtoId);
