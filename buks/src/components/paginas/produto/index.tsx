@@ -21,14 +21,13 @@ interface Produto {
   imagem: string;
 }
 
-console.log(produtos)
   return (
       <section className='produto'>
         <div className="conteudo-1140">
             <div className="conteudo">
                 <div className="titulo t1"><p>Nossos Produtos</p></div>
                 <div className="cards">
-                    {produtos.slice(0,8).map((produto: Produto, index: number) => (
+                    {produtos.map((produto: Produto, index: number) => (
                         <CardProduto nome={produto.nome} preco={produto.preco} imagem={produto.imagem} link={toUrlFriendly(produto.nome)} />
                     ))}
                 </div>

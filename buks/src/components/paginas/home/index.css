@@ -4,7 +4,7 @@
 
 .produto .conteudo{ padding: 50px 0 0;}
 .produto .conteudo .titulo{text-align: center; color: var(--laranja-1);}
-.produto .conteudo .cards{width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap; padding: 40px 0; gap: 40px;}
+.produto .conteudo .cards{width: 100%; display: flex; justify-content: flex-start; flex-wrap: wrap; padding: 40px 0; gap: 42px;}
 
 .autores{background: var(--laranja-1);}
 .autores .conteudo{ padding: 50px 0 0;}

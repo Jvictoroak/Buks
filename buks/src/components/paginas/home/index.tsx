@@ -3,12 +3,28 @@ import Banner from '../../sections/banner'
 import CardProduto from '../../cards/produto'
 import CardAutor from '../../cards/autor' 
 import './index.css'
-import produtos from '../../../data/produtos.json'
+// import produtos from '../../../data/produtos.json'
 import autores from '../../../data/autores.json'
 import {toUrlFriendly} from '../../../utils/utils'
+import { useEffect, useState } from 'react';
 
-export default function home() {
-  return (
+export default function Home() {
+
+    const [produtos, setProdutos] = useState([]);
+    
+    useEffect(() => {
+    fetch('http://localhost:3001/produtos')
+        .then(response => response.json())
+        .then(data => setProdutos(data))
+        .catch(error => console.error('Erro ao buscar produtos:', error));
+    }, []);
+    
+    interface Produto {
+        nome: string;
+        preco: number;
+        imagem: string;
+    }
+    return (
     <main className="home">
         <Banner/>
         <section className="categoria">
@@ -28,7 +44,7 @@ export default function home() {
                 <div className="conteudo">
                     <div className="titulo t1"><p>Nossos Produtos</p></div>
                     <div className="cards">
-                        {produtos.slice(0,8).map((produto, index) => (
+                        {produtos.slice(0,8).map((produto: Produto, index: number) => (
                             <CardProduto nome={produto.nome} preco={produto.preco} imagem={produto.imagem} link={toUrlFriendly(produto.nome)} />
                         ))}
                     </div>
