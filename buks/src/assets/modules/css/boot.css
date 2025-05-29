@@ -24,3 +24,18 @@
 .titulo.t1{font: 800 32px/1em "Nunito", sans-serif;}
 .titulo.h1{ font-size: 16px;}
 .botao{font: 800 14px/1em "Nunito", sans-serif;}
+
+/* SweetAlert2 custom styles globais */
+.swal-custom-popup { background: var(--bege-1, #F5EEDC); color: var(--verde-1, #2C3930); font-family: 'Nunito', 'Roboto', sans-serif; border-radius: 16px; }
+.swal-custom-title { color: var(--verde-1, #2C3930); font-family: 'Nunito', 'Roboto', sans-serif; font-weight: 800; font-size: 2rem; }
+.swal-custom-confirm { background: var(--laranja-1, #A27B5C) !important; color: var(--branco, #fff) !important; font-family: 'Nunito', 'Roboto', sans-serif; font-weight: 700; border-radius: 8px; padding: 8px 24px; font-size: 1rem; }
+.swal-custom-icon { color: var(--laranja-1, #A27B5C) !important; border-color: var(--laranja-1, #A27B5C) !important; }
+.swal2-success-circular-line-left,
+.swal2-success-circular-line-right,
+.swal2-success-fix,
+.swal2-success-line-tip,
+.swal2-success-line-long { stroke: var(--laranja-1, #A27B5C) !important; }
+.swal2-icon.swal2-success [class^='swal2-success-line'],
+.swal2-icon.swal2-success [class*=' swal2-success-line'] { background-color: var(--laranja-1, #A27B5C) !important; }
+.swal2-icon.swal2-success { border-color: var(--laranja-1, #A27B5C) !important; }
+.swal2-success-ring { stroke: var(--laranja-1, #A27B5C) !important; }

@@ -27,5 +27,3 @@
 .cadastro .cadastrar-btn {background-color: var(--laranja-1);color: var(--branco);border: none;border-radius: 20px;padding: 12px;width: 100%;cursor: pointer;margin-top: 15px;font-size: 14px;transition: all 0.3s ease;}
 
 .cadastro .cadastrar-btn:hover {background-color: var(--verde-2);}
-
-.cadastro .icon {margin-right: 10px;}

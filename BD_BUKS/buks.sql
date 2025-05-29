@@ -1,61 +1,67 @@
 -- Remove o banco de dados se já existir
 DROP DATABASE IF EXISTS BUKS;
 
--- Cria o banco de dados
-CREATE DATABASE BUKS;
+-- Cria o banco de dados com codificação UTF-8
+CREATE DATABASE BUKS
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
 
 -- Seleciona o banco de dados para uso
 USE BUKS;
 
 -- Criação da tabela Usuario
 CREATE TABLE Usuario (
-    id INT PRIMARY KEY,
-    nome VARCHAR(50),
-    idade INT,
-    email VARCHAR(50),
-    senha VARCHAR(50),
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
     dataNascimento DATE
 );
 
--- Criação da tabela livros
-CREATE TABLE livros (
-    id INT PRIMARY KEY,
-    nome VARCHAR(50),
-    descricao VARCHAR(200),
-    preco DECIMAL(10,2),
-    imagem LONGBLOB,
-    estoque INT
+-- Criação da tabela Livros
+CREATE TABLE Livros (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10,2) NOT NULL,
+    imagem MEDIUMBLOB,
+    estoque INT NOT NULL DEFAULT 0
 );
 
--- Criação da tabela pedido
-CREATE TABLE pedido (
-    id INT PRIMARY KEY,
-    data DATE,
-    complemento VARCHAR(50),
-    numero INT,
-    cep VARCHAR(10),
-    fk_Usuario_id INT
+-- Criação da tabela Pedido
+CREATE TABLE Pedido (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    data DATE NOT NULL,
+    complemento VARCHAR(100),
+    numero INT NOT NULL,
+    cep CHAR(9) NOT NULL,
+    fk_usuario_id INT NOT NULL,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Criação da tabela associativa possui (sem chave primária, mas com UNIQUE)
-CREATE TABLE possui (
+-- Criação da tabela associativa Possui
+CREATE TABLE Possui (
     fk_livros_id INT NOT NULL,
-    fk_pedido_id INT,
-    UNIQUE (fk_livros_id, fk_pedido_id)
+    fk_pedido_id INT NOT NULL,
+    quantidade INT NOT NULL DEFAULT 1,
+    PRIMARY KEY (fk_livros_id, fk_pedido_id)
 );
 
 -- Adicionando chaves estrangeiras
-ALTER TABLE pedido ADD CONSTRAINT FK_pedido_Usuario
-    FOREIGN KEY (fk_Usuario_id)
+ALTER TABLE Pedido ADD CONSTRAINT FK_pedido_usuario
+    FOREIGN KEY (fk_usuario_id)
     REFERENCES Usuario (id)
-    ON DELETE RESTRICT;
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE;
 
-ALTER TABLE possui ADD CONSTRAINT FK_possui_livros
+ALTER TABLE Possui ADD CONSTRAINT FK_possui_livros
     FOREIGN KEY (fk_livros_id)
-    REFERENCES livros (id)
-    ON DELETE RESTRICT;
+    REFERENCES Livros (id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE;
 
-ALTER TABLE possui ADD CONSTRAINT FK_possui_pedido
+ALTER TABLE Possui ADD CONSTRAINT FK_possui_pedido
     FOREIGN KEY (fk_pedido_id)
-    REFERENCES pedido (id)
-    ON DELETE SET NULL;
+    REFERENCES Pedido (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
