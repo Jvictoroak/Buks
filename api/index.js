@@ -37,4 +37,21 @@ app.post('/usuarios', (req, res) => {
   });
 });
 
+// Endpoint para login
+app.post('/login', (req, res) => {
+  const { email, senha } = req.body;
+  if (!email || !senha) {
+    return res.status(400).json({ error: 'Email e senha são obrigatórios' });
+  }
+  const sql = 'SELECT * FROM Usuario WHERE email = ? AND senha = ?';
+  connection.query(sql, [email, senha], (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    if (results.length > 0) {
+      res.status(200).json({ message: 'Login realizado com sucesso', usuario: results[0] });
+    } else {
+      res.status(401).json({ error: 'Email ou senha inválidos' });
+    }
+  });
+});
+
 app.listen(3001, () => console.log('API rodando na porta 3001'));
