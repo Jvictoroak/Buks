@@ -1,0 +1,108 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 57, 48, 0.7); /* --verde-1 com opacidade */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Modal Box */
+.modal {
+  background: var(--bege-1, #F5EEDC);
+  color: var(--verde-1, #2C3930);
+  padding: 2.5rem 2rem 2rem 2rem;
+  border-radius: 16px;
+  min-width: 340px;
+  max-width: 95vw;
+  box-shadow: 0 4px 32px rgba(44, 57, 48, 0.18);
+  position: relative;
+  font-family: "Nunito", sans-serif;
+}
+
+.fechar {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--verde-1, #2C3930);
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+.fechar:hover {
+  color: var(--laranja-1, #A27B5C);
+}
+
+.perfil-form label {
+  display: block;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  color: var(--verde-1, #2C3930);
+}
+.perfil-form input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.3rem;
+  border: 1.5px solid var(--verde-2, #3F4F44);
+  border-radius: 8px;
+  background: var(--branco, #fff);
+  color: var(--preto, #000);
+  font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  transition: border 0.2s;
+}
+.perfil-form input:disabled {
+  background: #f0f0f0;
+  color: var(--cinza, #686868);
+}
+
+.botoes {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.botoes button {
+  background: var(--laranja-1, #A27B5C);
+  color: var(--branco, #fff);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.botoes button:hover {
+  background: var(--verde-2, #3F4F44);
+  color: var(--bege-1, #F5EEDC);
+}
+.botoes .excluir {
+  background: var(--verde-1, #2C3930);
+  color: var(--bege-1, #F5EEDC);
+}
+.botoes .excluir:hover {
+  background: var(--laranja-1, #A27B5C);
+  color: var(--branco, #fff);
+}
+
+.modal h2 {
+  font-family: "Nunito", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--verde-1, #2C3930);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .modal {
+    min-width: 90vw;
+    padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+  }
+}

@@ -54,4 +54,28 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Endpoint para atualizar usuário (UPDATE) usando POST
+app.post('/usuarios/update/:id', (req, res) => {
+  const { id } = req.params;
+  const { nome, email, senha, dataNascimento } = req.body;
+  if (!nome || !email || !senha || !dataNascimento) {
+    return res.status(400).json({ error: 'Todos os campos são obrigatórios' });
+  }
+  const sql = 'UPDATE Usuario SET nome = ?, email = ?, senha = ?, dataNascimento = ? WHERE id = ?';
+  connection.query(sql, [nome, email, senha, dataNascimento, id], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json({ message: 'Usuário atualizado com sucesso' });
+  });
+});
+
+// Endpoint para deletar usuário (DELETE) usando POST
+app.post('/usuarios/delete/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'DELETE FROM Usuario WHERE id = ?';
+  connection.query(sql, [id], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(200).json({ message: 'Usuário excluído com sucesso' });
+  });
+});
+
 app.listen(3001, () => console.log('API rodando na porta 3001'));

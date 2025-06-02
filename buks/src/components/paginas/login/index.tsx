@@ -20,6 +20,8 @@ function Login() {
             });
             const data = await response.json();
             if (response.ok) {
+                // Salva o usuário no localStorage para manter o login
+                localStorage.setItem('usuario', JSON.stringify(data.usuario));
                 showSwal({
                     icon: 'success',
                     title: 'Bem-vindo!',

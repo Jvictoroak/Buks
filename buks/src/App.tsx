@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import './assets/modules/css/boot.css';
@@ -13,6 +13,13 @@ import ProdutoInterna from './components/paginas/produto-interna';
 
 function AppContent() {
   const location = useLocation();
+  useEffect(() => {
+    const usuario = localStorage.getItem('usuario');
+    if (!usuario && location.pathname !== '/login' && location.pathname !== '/cadastro') {
+      window.location.replace('/login');
+    }
+  }, [location]);
+  
   return (
     <>
       {((location.pathname != '/cadastro') && (location.pathname != '/login')) && <Cabecalho />}

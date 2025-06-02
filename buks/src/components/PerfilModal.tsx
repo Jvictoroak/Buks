@@ -1,0 +1,134 @@
+import React, { useState, useEffect } from 'react';
+import './PerfilModal.css';
+
+interface PerfilModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+interface Usuario {
+  id: number;
+  nome: string;
+  email: string;
+  senha: string;
+  dataNascimento: string;
+}
+
+const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
+  const [editando, setEditando] = useState(false);
+  const [form, setForm] = useState({ nome: '', email: '', senha: '', dataNascimento: '' });
+
+  useEffect(() => {
+    const userStr = localStorage.getItem('usuario');
+    if (userStr) {
+      try {
+        const user: Usuario = JSON.parse(userStr);
+        setUsuario(user);
+        setForm({
+          nome: user.nome || '',
+          email: user.email || '',
+          senha: user.senha || '',
+          dataNascimento: user.dataNascimento ? user.dataNascimento.substring(0, 10) : ''
+        });
+      } catch {
+        setUsuario(null);
+      }
+    } else {
+      setUsuario(null);
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+  if (!usuario) {
+    return (
+      <div className="modal-overlay">
+        <div className="modal">
+          <button className="fechar" onClick={onClose}>X</button>
+          <h2>Usuário não encontrado</h2>
+          <p>Faça login para acessar seu perfil.</p>
+        </div>
+      </div>
+    );
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleEditar = () => {
+    setEditando(true);
+  };
+
+  const handleSalvar = async () => {
+    try {
+      const response = await fetch(`http://localhost:3001/usuarios/update/${usuario.id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      });
+      if (response.ok) {
+        const atualizado = { ...usuario, ...form };
+        setUsuario(atualizado);
+        localStorage.setItem('usuario', JSON.stringify(atualizado));
+        setEditando(false);
+        alert('Dados atualizados com sucesso!');
+      } else {
+        alert('Erro ao atualizar dados.');
+      }
+    } catch (err) {
+      alert('Erro ao conectar com o servidor.');
+    }
+  };
+
+  const handleExcluir = async () => {
+    if (!window.confirm('Tem certeza que deseja excluir sua conta?')) return;
+    try {
+      const response = await fetch(`http://localhost:3001/usuarios/delete/${usuario.id}`, {
+        method: 'POST'
+      });
+      if (response.ok) {
+        localStorage.removeItem('usuario');
+        alert('Conta excluída com sucesso!');
+        window.location.href = '/';
+      } else {
+        alert('Erro ao excluir conta.');
+      }
+    } catch (err) {
+      alert('Erro ao conectar com o servidor.');
+    }
+  };
+
+  return (
+    <div className="modal-overlay">
+      <div className="modal">
+        <button className="fechar" onClick={onClose}>X</button>
+        <h2>Meu Perfil</h2>
+        <form className="perfil-form" onSubmit={e => e.preventDefault()}>
+          <label>Nome:
+            <input name="nome" value={form.nome} onChange={handleChange} disabled={!editando} />
+          </label>
+          <label>Email:
+            <input name="email" value={form.email} onChange={handleChange} disabled={!editando} />
+          </label>
+          <label>Senha:
+            <input name="senha" type="password" value={form.senha} onChange={handleChange} disabled={!editando} />
+          </label>
+          <label>Data de Nascimento:
+            <input name="dataNascimento" type="date" value={form.dataNascimento} onChange={handleChange} disabled={!editando} />
+          </label>
+          <div className="botoes">
+            {!editando ? (
+              <button type="button" onClick={handleEditar}>Editar</button>
+            ) : (
+              <button type="button" onClick={handleSalvar}>Salvar</button>
+            )}
+            <button type="button" onClick={handleExcluir} className="excluir">Excluir Conta</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default PerfilModal;
