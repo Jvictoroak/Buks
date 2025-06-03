@@ -2,7 +2,7 @@
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(44, 57, 48, 0.7); /* --verde-1 com opacidade */
+  background: #2c3930b3; /* --verde-1 com opacidade */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,13 +11,13 @@
 
 /* Modal Box */
 .modal {
-  background: var(--bege-1, #F5EEDC);
-  color: var(--verde-1, #2C3930);
+  background: var(--bege-1);
+  color: var(--verde-1, --verde-2);
   padding: 2.5rem 2rem 2rem 2rem;
   border-radius: 16px;
   min-width: 340px;
   max-width: 95vw;
-  box-shadow: 0 4px 32px rgba(44, 57, 48, 0.18);
+  box-shadow: 0 4px 32px #2c39302e;
   position: relative;
   font-family: "Nunito", sans-serif;
 }
@@ -29,32 +29,37 @@
   background: transparent;
   border: none;
   font-size: 1.5rem;
-  color: var(--verde-1, #2C3930);
+  color: var(--verde-1);
   cursor: pointer;
   font-weight: bold;
   transition: color 0.2s;
 }
 .fechar:hover {
-  color: var(--laranja-1, #A27B5C);
+  color: var(--laranja-1);
 }
 
+.perfil-form {
+      display: flex
+;
+    flex-direction: column;
+}
 .perfil-form label {
   display: block;
-  margin-bottom: 1.2rem;
   font-weight: 600;
-  color: var(--verde-1, #2C3930);
+  color: var(--verde-1);
 }
 .perfil-form input {
-  width: 100%;
   padding: 0.6rem 0.8rem;
   margin-top: 0.3rem;
-  border: 1.5px solid var(--verde-2, #3F4F44);
+  border: 1.5px solid var(--verde-2);
   border-radius: 8px;
-  background: var(--branco, #fff);
-  color: var(--preto, #000);
+  background: var(--branco);
+  color: var(--preto);
   font-size: 1rem;
   font-family: "Nunito", sans-serif;
   transition: border 0.2s;
+  margin-bottom: 1.2rem;
+
 }
 .perfil-form input:disabled {
   background: #f0f0f0;
@@ -62,13 +67,14 @@
 }
 
 .botoes {
+  justify-content: center;
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 .botoes button {
-  background: var(--laranja-1, #A27B5C);
-  color: var(--branco, #fff);
+  background: var(--laranja-1);
+  color: var(--branco);
   border: none;
   padding: 0.6rem 1.5rem;
   border-radius: 8px;
@@ -79,23 +85,23 @@
   transition: background 0.2s, color 0.2s;
 }
 .botoes button:hover {
-  background: var(--verde-2, #3F4F44);
-  color: var(--bege-1, #F5EEDC);
+  background: var(--verde-2);
+  color: var(--bege-1);
 }
 .botoes .excluir {
-  background: var(--verde-1, #2C3930);
-  color: var(--bege-1, #F5EEDC);
+  background: var(--verde-1);
+  color: var(--bege-1);
 }
 .botoes .excluir:hover {
-  background: var(--laranja-1, #A27B5C);
-  color: var(--branco, #fff);
+  background: var(--laranja-1);
+  color: var(--branco)
 }
 
 .modal h2 {
   font-family: "Nunito", sans-serif;
   font-size: 2rem;
   font-weight: 800;
-  color: var(--verde-1, #2C3930);
+  color: var(--verde-1);
   margin-bottom: 1.5rem;
   text-align: center;
 }

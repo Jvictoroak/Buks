@@ -6,3 +6,19 @@
 .cabecalho .conteudo .menu .navegacao .pag:hover,
 .cabecalho .conteudo .menu .navegacao .pag.ativo{background: var(--verde-1);} 
 .cabecalho .conteudo .menu .navegacao .pag .texto{ color: var(--branco);}
+.logout-btn {
+  position: absolute;
+  top: 16px;
+  right: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}

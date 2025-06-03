@@ -106,17 +106,17 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
         <h2>Meu Perfil</h2>
         <form className="perfil-form" onSubmit={e => e.preventDefault()}>
           <label>Nome:
+          </label>
             <input name="nome" value={form.nome} onChange={handleChange} disabled={!editando} />
-          </label>
           <label>Email:
+          </label>
             <input name="email" value={form.email} onChange={handleChange} disabled={!editando} />
-          </label>
           <label>Senha:
+          </label>
             <input name="senha" type="password" value={form.senha} onChange={handleChange} disabled={!editando} />
-          </label>
           <label>Data de Nascimento:
-            <input name="dataNascimento" type="date" value={form.dataNascimento} onChange={handleChange} disabled={!editando} />
           </label>
+            <input name="dataNascimento" type="date" value={form.dataNascimento} onChange={handleChange} disabled={!editando} />
           <div className="botoes">
             {!editando ? (
               <button type="button" onClick={handleEditar}>Editar</button>

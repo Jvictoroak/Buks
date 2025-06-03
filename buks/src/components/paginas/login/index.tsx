@@ -20,7 +20,8 @@ function Login() {
             });
             const data = await response.json();
             if (response.ok) {
-                // Salva o usuário no localStorage para manter o login
+                // Salva o token JWT no localStorage para manter a sessão do usuário
+                localStorage.setItem('token', data.token);
                 localStorage.setItem('usuario', JSON.stringify(data.usuario));
                 showSwal({
                     icon: 'success',

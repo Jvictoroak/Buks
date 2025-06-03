@@ -1,6 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -47,7 +48,14 @@ app.post('/login', (req, res) => {
   connection.query(sql, [email, senha], (err, results) => {
     if (err) return res.status(500).json({ error: err });
     if (results.length > 0) {
-      res.status(200).json({ message: 'Login realizado com sucesso', usuario: results[0] });
+      const usuario = results[0];
+      // Gera o token JWT
+      const token = jwt.sign(
+        { id: usuario.id, email: usuario.email, nome: usuario.nome },
+        'secreto_buks', // Troque por uma chave secreta forte em produção
+        { expiresIn: '1h' }
+      );
+      res.status(200).json({ message: 'Login realizado com sucesso', usuario, token });
     } else {
       res.status(401).json({ error: 'Email ou senha inválidos' });
     }
