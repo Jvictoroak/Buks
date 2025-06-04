@@ -2,7 +2,9 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
-
+// const token = req.headers.authorization?.split(' ')[1];
+// const decoded = jwt.verify(token, 'secreto_buks');
+// decoded agora tem os dados do usuário
 const app = express();
 app.use(cors());
 

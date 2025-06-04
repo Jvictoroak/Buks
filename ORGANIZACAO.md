@@ -4,7 +4,8 @@
 - cd buks
 - npm install
 - npm install react-router-dom@6
-- npm install jsonwebtoken
+- npm install jwt-decode
+
 
 # Criando Componentes
 **Para que serve:** Crie componentes para todas as páginas, eles são necesssários por causa da forma que funciona o React. As sections e card você cria sempre que achar que um elemento ira ser reutilizado em outras partes do  site (Exemplo: um card padrão para o produto, um section para o cabecalho)

@@ -88,7 +88,7 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
         method: 'POST'
       });
       if (response.ok) {
-        localStorage.removeItem('usuario');
+        // localStorage.removeItem('usuario');
         alert('Conta excluída com sucesso!');
         window.location.href = '/';
       } else {

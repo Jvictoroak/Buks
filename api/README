@@ -1,5 +1,6 @@
 # dentro de /api
 
 npm install express mysql2 cors
+npm install jsonwebtoken
 npm install 
 npm start

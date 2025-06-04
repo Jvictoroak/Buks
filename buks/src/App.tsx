@@ -10,11 +10,18 @@ import Cadastro from './components/paginas/cadastro';
 import Login from './components/paginas/login';
 import Produtos from './components/paginas/produto';
 import ProdutoInterna from './components/paginas/produto-interna';
+import jwt_decode from "jwt-decode";
 
 function AppContent() {
   const location = useLocation();
   useEffect(() => {
-    const usuario = localStorage.getItem('usuario');
+    // const usuario = localStorage.getItem('usuario');
+    let usuario = null
+    const token = localStorage.getItem('token');
+    if(token){
+      // usuario = jwt_decode(token);
+    }
+    console.log(usuario)
     if (!usuario && location.pathname !== '/login' && location.pathname !== '/cadastro') {
       window.location.replace('/login');
     }

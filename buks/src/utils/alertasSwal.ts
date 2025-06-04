@@ -13,8 +13,8 @@ export function showSwal({ icon, title, text }: ShowSwalOptions) {
     text,
     customClass: {
       popup: 'swal-custom-popup',
-      title: 'swal-custom-title',
-      confirmButton: 'swal-custom-confirm',
+      title: '-custom-title',
+      confirmButton: '-custom-confirm',
       icon: 'swal-custom-icon',
     },
   });
