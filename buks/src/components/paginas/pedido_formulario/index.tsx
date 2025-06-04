@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
+import './index.css';
 
 function PedidoFormulario() {
   const location = useLocation();
@@ -14,7 +15,7 @@ function PedidoFormulario() {
       const usuario = jwtDecode(token);
       // @ts-ignore
       usuarioId = usuario.id;
-    } catch {}
+    } catch { }
   }
   const [form, setForm] = useState({
     complemento: '',
@@ -65,72 +66,31 @@ function PedidoFormulario() {
         <div className="conteudo">
           <h2 className="titulo t1">Novo Pedido</h2>
           <form onSubmit={handleSubmit}>
-            {/* Campo de data removido */}
             <div>
-              <label>Complemento:</label>
-              <input
-                type="text"
-                name="complemento"
-                value={form.complemento}
-                onChange={handleChange}
-                maxLength={100}
-              />
+              <label className='texto t1'>Livro:</label>
+              <input type="text" name="livro_nome" value={produto?.nome || ''} readOnly required />
             </div>
             <div>
-              <label>Telefone:</label>
-              <input
-                type="tel"
-                name="telefone"
-                value={form.telefone}
-                onChange={handleChange}
-                required
-              />
+              <label className='texto t1'>Preço:</label>
+              <input type="text" name="livro_preco" value={produto?.preco || ''} readOnly required />
             </div>
             <div>
-              <label>CEP:</label>
-              <input
-                type="text"
-                name="cep"
-                value={form.cep}
-                onChange={handleChange}
-                maxLength={9}
-                required
-              />
-            </div>
-            {/* Campo de ID do usuário removido do formulário visual */}
-            <div>
-              <label>Livro:</label>
-              <input
-                type="text"
-                name="livro_nome"
-                value={produto?.nome || ''}
-                readOnly
-                required
-              />
+              <label className='texto t1'>Quantidade:</label>
+              <input type="number" name="quantidade" value={form.quantidade} min={1} max={produto?.estoque || 1} onChange={handleChange} required />
             </div>
             <div>
-              <label>Preço:</label>
-              <input
-                type="text"
-                name="livro_preco"
-                value={produto?.preco || ''}
-                readOnly
-                required
-              />
+              <label className='texto t1'>Telefone:</label>
+              <input type="tel" name="telefone" value={form.telefone} onChange={handleChange} required />
             </div>
             <div>
-              <label>Quantidade:</label>
-              <input
-                type="number"
-                name="quantidade"
-                value={form.quantidade}
-                min={1}
-                max={produto?.estoque || 1}
-                onChange={handleChange}
-                required
-              />
+              <label className='texto t1'>CEP:</label>
+              <input type="text" name="cep" value={form.cep} onChange={handleChange} maxLength={9} required />
             </div>
-            <button type="submit">Enviar Pedido</button>
+            <div>
+              <label className='texto t1'>Complemento:</label>
+              <input type="text" name="complemento" value={form.complemento} onChange={handleChange} maxLength={100} />
+            </div>
+            <button className="texto t1" type="submit">Enviar Pedido</button>
           </form>
         </div>
       </div>
