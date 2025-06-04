@@ -1,0 +1,147 @@
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
+function PedidoFormulario() {
+  const location = useLocation();
+  const produto = location.state?.produto;
+  const [form, setForm] = useState({
+    data: '',
+    complemento: '',
+    telefone: '',
+    cep: '',
+    fk_usuario_id: '',
+    livro_id: produto?.id || '',
+    quantidade: 1,
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3001/pedidos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (response.ok) {
+        Swal.fire('Sucesso', 'Pedido realizado com sucesso!', 'success');
+        setForm({
+          data: '',
+          complemento: '',
+          telefone: '',
+          cep: '',
+          fk_usuario_id: '',
+          livro_id: produto?.id || '',
+          quantidade: 1,
+        });
+      } else {
+        Swal.fire('Erro', 'Erro ao realizar pedido', 'error');
+      }
+    } catch (error) {
+      Swal.fire('Erro', 'Erro ao conectar com o servidor', 'error');
+    }
+  };
+
+  return (
+    <div className="pedido-formulario">
+      <div className="conteudo-1140">
+        <div className="conteudo">
+          <h2 className="titulo t1">Novo Pedido</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Data:</label>
+              <input
+                type="date"
+                name="data"
+                value={form.data}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Complemento:</label>
+              <input
+                type="text"
+                name="complemento"
+                value={form.complemento}
+                onChange={handleChange}
+                maxLength={100}
+              />
+            </div>
+            <div>
+              <label>Telefone:</label>
+              <input
+                type="tel"
+                name="telefone"
+                value={form.telefone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>CEP:</label>
+              <input
+                type="text"
+                name="cep"
+                value={form.cep}
+                onChange={handleChange}
+                maxLength={9}
+                required
+              />
+            </div>
+            <div>
+              <label>ID do Usuário:</label>
+              <input
+                type="number"
+                name="fk_usuario_id"
+                value={form.fk_usuario_id}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label>Livro:</label>
+              <input
+                type="text"
+                name="livro_nome"
+                value={produto?.nome || ''}
+                readOnly
+                required
+              />
+            </div>
+            <div>
+              <label>Preço:</label>
+              <input
+                type="text"
+                name="livro_preco"
+                value={produto?.preco || ''}
+                readOnly
+                required
+              />
+            </div>
+            <div>
+              <label>Quantidade:</label>
+              <input
+                type="number"
+                name="quantidade"
+                value={form.quantidade}
+                min={1}
+                max={produto?.estoque || 1}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit">Enviar Pedido</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default PedidoFormulario;

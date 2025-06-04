@@ -1,9 +1,10 @@
 import React from 'react'
 import './index.css'
 import { useParams } from 'react-router-dom';
-import produtos from '../../../data/produtos.json'
+// import produtos from '../../../data/produtos.json'
 import { toUrlFriendly } from '../../../utils/utils'
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Produto {
   nome: string;
@@ -52,7 +53,13 @@ function ProdutoInterna() {
               {/* <div className="texto t2 descricao"><p>{produto.descricao}</p></div> */}
               <div className="texto t1 estoque"><p>Estoque: {produto.estoque}</p></div>
               <div className="titulo t1 preco"><p>R$ {produto.preco}</p></div>
-              <div className="botao comprar"><p>Comprar</p></div>
+              <Link
+                to="/pedido"
+                state={{ produto }}
+                className="botao comprar"
+              >
+                <p>Comprar</p>
+              </Link>
             </div>
         </div>
       </div>
