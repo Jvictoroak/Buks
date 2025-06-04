@@ -16,13 +16,11 @@ import PedidoFormulario from './components/paginas/pedido_formulario';
 function AppContent() {
   const location = useLocation();
   useEffect(() => {
-    // const usuario = localStorage.getItem('usuario');
     let usuario = null
     const token = localStorage.getItem('token');
     if(token){
       usuario = jwtDecode(token);
     }
-    console.log(usuario)
     if (!usuario && location.pathname !== '/login' && location.pathname !== '/cadastro') {
       window.location.replace('/login');
     }

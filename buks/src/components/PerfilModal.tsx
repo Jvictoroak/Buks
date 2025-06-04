@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PerfilModal.css';
+import { jwtDecode } from "jwt-decode";
 
 interface PerfilModalProps {
   isOpen: boolean;
@@ -20,10 +21,10 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({ nome: '', email: '', senha: '', dataNascimento: '' });
 
   useEffect(() => {
-    const userStr = localStorage.getItem('usuario');
-    if (userStr) {
+    const token = localStorage.getItem('token');
+    if (token) {
       try {
-        const user: Usuario = JSON.parse(userStr);
+        const user = jwtDecode<Usuario>(token);
         setUsuario(user);
         setForm({
           nome: user.nome || '',
@@ -70,7 +71,7 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
       if (response.ok) {
         const atualizado = { ...usuario, ...form };
         setUsuario(atualizado);
-        localStorage.setItem('usuario', JSON.stringify(atualizado));
+        // Atualiza o token no localStorage se necessário
         setEditando(false);
         alert('Dados atualizados com sucesso!');
       } else {
@@ -88,7 +89,7 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
         method: 'POST'
       });
       if (response.ok) {
-        // localStorage.removeItem('usuario');
+        localStorage.removeItem('token');
         alert('Conta excluída com sucesso!');
         window.location.href = '/';
       } else {
@@ -105,17 +106,13 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
         <button className="fechar" onClick={onClose}>X</button>
         <h2>Meu Perfil</h2>
         <form className="perfil-form" onSubmit={e => e.preventDefault()}>
-          <label>Nome:
-          </label>
+          <label>Nome:</label>
             <input name="nome" value={form.nome} onChange={handleChange} disabled={!editando} />
-          <label>Email:
-          </label>
+          <label>Email:</label>
             <input name="email" value={form.email} onChange={handleChange} disabled={!editando} />
-          <label>Senha:
-          </label>
+          <label>Senha:</label>
             <input name="senha" type="password" value={form.senha} onChange={handleChange} disabled={!editando} />
-          <label>Data de Nascimento:
-          </label>
+          <label>Data de Nascimento:</label>
             <input name="dataNascimento" type="date" value={form.dataNascimento} onChange={handleChange} disabled={!editando} />
           <div className="botoes">
             {!editando ? (

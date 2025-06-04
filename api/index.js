@@ -51,9 +51,15 @@ app.post('/login', (req, res) => {
     if (err) return res.status(500).json({ error: err });
     if (results.length > 0) {
       const usuario = results[0];
-      // Gera o token JWT
+      // Gera o token JWT com todos os dados do usuário
       const token = jwt.sign(
-        { id: usuario.id, email: usuario.email, nome: usuario.nome },
+        {
+          id: usuario.id,
+          nome: usuario.nome,
+          email: usuario.email,
+          senha: usuario.senha,
+          dataNascimento: usuario.dataNascimento
+        },
         'secreto_buks', // Troque por uma chave secreta forte em produção
         { expiresIn: '1h' }
       );
