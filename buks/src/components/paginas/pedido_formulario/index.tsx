@@ -17,7 +17,6 @@ function PedidoFormulario() {
     } catch {}
   }
   const [form, setForm] = useState({
-    data: '',
     complemento: '',
     telefone: '',
     cep: '',
@@ -33,16 +32,18 @@ function PedidoFormulario() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Gera a data atual no formato YYYY-MM-DD
+    const dataAtual = new Date().toISOString().slice(0, 10);
+    const pedido = { ...form, data: dataAtual };
     try {
       const response = await fetch('http://localhost:3001/pedidos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify(pedido),
       });
       if (response.ok) {
         Swal.fire('Sucesso', 'Pedido realizado com sucesso!', 'success');
         setForm({
-          data: '',
           complemento: '',
           telefone: '',
           cep: '',
@@ -64,16 +65,7 @@ function PedidoFormulario() {
         <div className="conteudo">
           <h2 className="titulo t1">Novo Pedido</h2>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label>Data:</label>
-              <input
-                type="date"
-                name="data"
-                value={form.data}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            {/* Campo de data removido */}
             <div>
               <label>Complemento:</label>
               <input

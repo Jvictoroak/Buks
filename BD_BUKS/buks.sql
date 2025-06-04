@@ -33,7 +33,7 @@ CREATE TABLE Pedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
     data DATE NOT NULL,
     complemento VARCHAR(100),
-    telefone INT NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
     cep CHAR(9) NOT NULL,
     fk_usuario_id INT NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
