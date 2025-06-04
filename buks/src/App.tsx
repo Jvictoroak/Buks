@@ -10,7 +10,8 @@ import Cadastro from './components/paginas/cadastro';
 import Login from './components/paginas/login';
 import Produtos from './components/paginas/produto';
 import ProdutoInterna from './components/paginas/produto-interna';
-import jwt_decode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
+
 
 function AppContent() {
   const location = useLocation();
@@ -19,7 +20,7 @@ function AppContent() {
     let usuario = null
     const token = localStorage.getItem('token');
     if(token){
-      // usuario = jwt_decode(token);
+      usuario = jwtDecode(token);
     }
     console.log(usuario)
     if (!usuario && location.pathname !== '/login' && location.pathname !== '/cadastro') {
