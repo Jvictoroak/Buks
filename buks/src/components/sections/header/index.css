@@ -1,24 +1,9 @@
 .cabecalho {background-color: var(--laranja-1); position: sticky;}
-.cabecalho .conteudo{display: flex; justify-content: space-between; }
+.cabecalho .conteudo{display: flex; justify-content: space-between;}
 .cabecalho .conteudo .imagem-container{ width: 150px; padding: 20px 0;}
 .cabecalho .conteudo .menu .navegacao{display: flex; height: 100%;}
 .cabecalho .conteudo .menu .navegacao .pag{padding: 10px 20px; color: var(--branco); display: flex; transition: .4s; cursor: pointer; height: 100%; align-items: center; justify-content: center; height: 100%; box-sizing: border-box;} 
 .cabecalho .conteudo .menu .navegacao .pag:hover,
 .cabecalho .conteudo .menu .navegacao .pag.ativo{background: var(--verde-1);} 
 .cabecalho .conteudo .menu .navegacao .pag .texto{ color: var(--branco);}
-.logout-btn {
-  position: absolute;
-  top: 16px;
-  right: 32px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  z-index: 10;
-}
+.logout-btn {background: transparent;border: none;cursor: pointer;width: 150px;height: 40px;display: flex;align-items: center;justify-content: flex-end;align-self: center;}
