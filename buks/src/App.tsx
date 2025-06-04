@@ -10,6 +10,7 @@ import Cadastro from './components/paginas/cadastro';
 import Login from './components/paginas/login';
 import Produtos from './components/paginas/produto';
 import ProdutoInterna from './components/paginas/produto-interna';
+import PedidoFormulario from './components/paginas/pedido_formulario';
 
 function AppContent() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function AppContent() {
         <Route path="/login" element={<Login />}/>
         <Route path="/produtos" element={<Produtos/>} />
         <Route path="/produtos/:produtoId" element={<ProdutoInterna/>} />
+        <Route path="/pedido" element={<PedidoFormulario/>} />
       </Routes>
       <Rodape />
     </>

@@ -54,4 +54,31 @@ app.post('/login', (req, res) => {
   });
 });
 
+// Endpoint para criar pedido seguindo o modelo relacional
+app.post('/pedidos', (req, res) => {
+  console.log('Recebido no /pedidos:', req.body); // DEBUG
+  const { data, complemento, telefone, cep, fk_usuario_id, livro_id, quantidade } = req.body;
+  if (!data || !telefone || !cep || !fk_usuario_id || !livro_id || !quantidade) {
+    return res.status(400).json({ error: 'Dados do pedido incompletos' });
+  }
+  // 1. Inserir na tabela Pedido
+  const sqlPedido = 'INSERT INTO Pedido (data, complemento, telefone, cep, fk_usuario_id) VALUES (?, ?, ?, ?, ?)';
+  connection.query(sqlPedido, [data, complemento, telefone, cep, fk_usuario_id], (err, result) => {
+    if (err) {
+      console.error('Erro ao inserir Pedido:', err); // DEBUG
+      return res.status(500).json({ error: err });
+    }
+    const pedidoId = result.insertId;
+    // 2. Inserir na tabela Possui
+    const sqlPossui = 'INSERT INTO Possui (fk_livros_id, fk_pedido_id, quantidade) VALUES (?, ?, ?)';
+    connection.query(sqlPossui, [livro_id, pedidoId, quantidade], (err2) => {
+      if (err2) {
+        console.error('Erro ao inserir Possui:', err2); // DEBUG
+        return res.status(500).json({ error: err2 });
+      }
+      res.status(201).json({ message: 'Pedido realizado com sucesso', pedidoId });
+    });
+  });
+});
+
 app.listen(3001, () => console.log('API rodando na porta 3001'));
