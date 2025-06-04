@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { jwtDecode } from 'jwt-decode';
 
 function PedidoFormulario() {
   const location = useLocation();
   const produto = location.state?.produto;
+  // Pega o id do usuário logado do token JWT
+  let usuarioId = '';
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const usuario = jwtDecode(token);
+      // @ts-ignore
+      usuarioId = usuario.id;
+    } catch {}
+  }
   const [form, setForm] = useState({
     data: '',
     complemento: '',
     telefone: '',
     cep: '',
-    fk_usuario_id: '',
+    fk_usuario_id: usuarioId,
     livro_id: produto?.id || '',
     quantidade: 1,
   });
@@ -35,7 +46,7 @@ function PedidoFormulario() {
           complemento: '',
           telefone: '',
           cep: '',
-          fk_usuario_id: '',
+          fk_usuario_id: usuarioId,
           livro_id: produto?.id || '',
           quantidade: 1,
         });
@@ -94,16 +105,7 @@ function PedidoFormulario() {
                 required
               />
             </div>
-            <div>
-              <label>ID do Usuário:</label>
-              <input
-                type="number"
-                name="fk_usuario_id"
-                value={form.fk_usuario_id}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            {/* Campo de ID do usuário removido do formulário visual */}
             <div>
               <label>Livro:</label>
               <input
