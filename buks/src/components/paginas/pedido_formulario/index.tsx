@@ -64,16 +64,12 @@ function PedidoFormulario() {
     <div className="pedido-formulario">
       <div className="conteudo-1140">
         <div className="conteudo">
-          <h2 className="titulo t1">Novo Pedido</h2>
+
+          <div className="titulo t1">
+            <p>{produto?.nome || ''}</p>
+            <p>R$ {produto?.preco || ''}</p>
+          </div>
           <form onSubmit={handleSubmit}>
-            <div>
-              <label className='texto t1'>Livro:</label>
-              <input type="text" name="livro_nome" value={produto?.nome || ''} readOnly required />
-            </div>
-            <div>
-              <label className='texto t1'>Preço:</label>
-              <input type="text" name="livro_preco" value={produto?.preco || ''} readOnly required />
-            </div>
             <div>
               <label className='texto t1'>Quantidade:</label>
               <input type="number" name="quantidade" value={form.quantidade} min={1} max={produto?.estoque || 1} onChange={handleChange} required />

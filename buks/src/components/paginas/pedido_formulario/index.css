@@ -1,6 +1,6 @@
-/* Deixa o formulário centralizado e com visual semelhante ao cadastro */
 .pedido-formulario {width: 100%;
   background: #3a5341;
+  padding: 80px 0;
 }
 
 .pedido-formulario .conteudo {
@@ -21,6 +21,9 @@
   text-align: center;
   margin-bottom: 25px;
   font-size: 28px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .pedido-formulario form {
