@@ -65,7 +65,7 @@ ALTER TABLE Possui ADD CONSTRAINT FK_possui_pedido
     REFERENCES Pedido (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE;
-
+    
 INSERT INTO Livros (nome, descricao, preco, estoque) VALUES
 ('O Senhor dos Anéis', 'Uma obra-prima de fantasia épica escrita por J.R.R. Tolkien.', 99.90, 10),
 ('1984', 'Um romance distópico de George Orwell.', 49.50, 25),
