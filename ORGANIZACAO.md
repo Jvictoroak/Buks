@@ -6,6 +6,7 @@
 - npm install react-router-dom@6
 - npm install sweetalert2
 - npm install jwt-decode
+- npm install bootstrap
 - olhar o README da pasta 'api'
 
 # Criando Componentes
