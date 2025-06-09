@@ -144,22 +144,19 @@ app.delete('/livros/:id', (req, res) => {
 // Endpoint para servir a imagem do livro
 app.get('/livros/:id/imagem', (req, res) => {
   const { id } = req.params;
-  // Corrigido para usar 'Livros' com L maiúsculo
   connection.query('SELECT imagem FROM Livros WHERE id = ?', [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar imagem:', err);
       return res.status(500).json({ error: 'Erro ao buscar imagem' });
     }
     if (results.length === 0) {
-      console.warn('Livro não encontrado para id:', id);
       return res.status(404).json({ error: 'Livro não encontrado' });
     }
     if (!results[0].imagem) {
-      console.warn('Imagem não encontrada para o livro id:', id);
-      return res.status(404).json({ error: 'Imagem não encontrada' });
+      // Se não houver imagem, retorna a imagem padrão
+      return res.sendFile(require('path').resolve(__dirname, '../buks/src/assets/img/livro_default.png'));
     }
     const img = Buffer.from(results[0].imagem, 'binary');
-    // Detecta tipo PNG/JPEG pelo header do BLOB
     if (img[0] === 0x89 && img[1] === 0x50) {
       res.setHeader('Content-Type', 'image/png');
     } else if (img[0] === 0xFF && img[1] === 0xD8) {
@@ -168,6 +165,24 @@ app.get('/livros/:id/imagem', (req, res) => {
       res.setHeader('Content-Type', 'application/octet-stream');
     }
     res.end(img);
+  });
+});
+
+// Adicionar novo livro
+app.post('/livros', (req, res) => {
+  const { nome, descricao, preco, estoque } = req.body;
+  let imagem = null;
+  if (req.body.imagem) {
+    // Se vier como base64, converte para buffer
+    imagem = Buffer.from(req.body.imagem, 'base64');
+  }
+  if (!nome || !preco || estoque === undefined) {
+    return res.status(400).json({ error: 'Nome, preço e estoque são obrigatórios' });
+  }
+  const sql = 'INSERT INTO Livros (nome, descricao, preco, imagem, estoque) VALUES (?, ?, ?, ?, ?)';
+  connection.query(sql, [nome, descricao, preco, imagem, estoque], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    res.status(201).json({ message: 'Livro adicionado com sucesso', id: result.insertId });
   });
 });
 
