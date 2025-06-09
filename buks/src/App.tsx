@@ -13,6 +13,7 @@ import Crud_Livros from './components/paginas/crud_livros';
 import ProdutoInterna from './components/paginas/produto-interna';
 import { jwtDecode } from "jwt-decode";
 import PedidoFormulario from './components/paginas/pedido_formulario';
+import Meus_pedidos from './components/paginas/meus_pedidos';
 
 function AppContent() {
   const location = useLocation();
@@ -29,7 +30,7 @@ function AppContent() {
   
   return (
     <>
-      {((location.pathname != '/cadastro') && (location.pathname != '/login')) && <Cabecalho />}
+      {((location.pathname !== '/cadastro') && (location.pathname !== '/login') && (location.pathname !== '/crud_livros')) && <Cabecalho />}
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/cadastro" element={<Cadastro/>}/>
@@ -38,6 +39,8 @@ function AppContent() {
         <Route path="/crud_livros" element={<Crud_Livros/>} />
         <Route path="/produtos/:produtoId" element={<ProdutoInterna/>} />
         <Route path="/pedido" element={<PedidoFormulario/>} />
+        <Route path="/pedido" element={<PedidoFormulario/>} />
+        <Route path="/meus_pedidos" element={<Meus_pedidos/>} />
       </Routes>
       <Rodape />
     </>

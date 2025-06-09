@@ -1,7 +1,4 @@
-.pedido-formulario {width: 100%;
-  background: #3a5341;
-  padding: 80px 0;
-}
+.pedido-formulario {width: 100%;background: #3a5341;padding: 80px 0;}
 
 .pedido-formulario .conteudo {
   display: flex;
