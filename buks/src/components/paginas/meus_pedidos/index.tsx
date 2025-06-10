@@ -8,6 +8,9 @@ export default function Meus_pedidos() {
   const [pedidos, setPedidos] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState('');
+  const [editando, setEditando] = useState<number|null>(null);
+  const [editTelefone, setEditTelefone] = useState('');
+  const [editNome, setEditNome] = useState('');
 
   // Pega o id do usuário logado do token JWT
   let usuarioId = '';
@@ -83,6 +86,56 @@ export default function Meus_pedidos() {
     }
   }
 
+  const abrirEdicao = (pedido: any) => {
+    setEditando(pedido.pedido_id);
+    setEditTelefone(pedido.telefone);
+    setEditNome(pedido.nome_destinatario);
+  };
+
+  const cancelarEdicao = () => {
+    setEditando(null);
+    setEditTelefone('');
+    setEditNome('');
+  };
+
+  const salvarEdicao = async (pedido_id: number) => {
+    try {
+      const response = await fetch(`http://localhost:3001/pedidos/${pedido_id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ telefone: editTelefone, nome_destinatario: editNome })
+      });
+      if (!response.ok) throw new Error('Erro ao editar pedido');
+      setPedidos(pedidos.map(p => p.pedido_id === pedido_id ? { ...p, telefone: editTelefone, nome_destinatario: editNome } : p));
+      cancelarEdicao();
+      Swal.fire({
+        title: 'Editado!',
+        text: 'Pedido atualizado com sucesso.',
+        icon: 'success',
+        customClass: {
+          popup: 'swal-custom-popup',
+          title: 'swal-custom-title',
+          confirmButton: 'swal-custom-confirm',
+          icon: 'swal-custom-icon',
+        },
+        timer: 1800,
+        showConfirmButton: false
+      });
+    } catch {
+      Swal.fire({
+        title: 'Erro',
+        text: 'Erro ao editar pedido',
+        icon: 'error',
+        customClass: {
+          popup: 'swal-custom-popup',
+          title: 'swal-custom-title',
+          confirmButton: 'swal-custom-confirm',
+          icon: 'swal-custom-icon',
+        },
+      });
+    }
+  }
+
   return (
     <main className='meus_pedidos'>
       <div className="conteudo-1140">
@@ -95,26 +148,30 @@ export default function Meus_pedidos() {
             {pedidos.map((pedido, index) => (
               <li key={pedido.pedido_id || index} className='card'>
                 <div className="info">
-                  <div className="">
-                    Livro: {pedido.livro_nome}
-                  </div>
-                  <div className="">
-                    Destinatário: {pedido.nome_destinatario} <br/>
-                  </div>
-                  <div className="">
-                    Telefone: {pedido.telefone} <br/>
-                  </div>
-                  <div className="">
-                    Preço: R$ {pedido.livro_preco} <br/>
-                  </div>
-                  <div className="">
-                    Quantidade: {pedido.quantidade} <br/>
-                  </div>
-                  <div className="">
-                    Pedido: {formatarData(pedido.data)}
-                  </div>
+                  <div className="">Livro: {pedido.livro_nome}</div>
+                  <div className="">Destinatário: {editando === pedido.pedido_id ? (
+                    <input type="text" value={editNome} onChange={e => setEditNome(e.target.value)} />
+                  ) : (
+                    pedido.nome_destinatario
+                  )}</div>
+                  <div className="">Telefone: {editando === pedido.pedido_id ? (
+                    <input type="tel" value={editTelefone} onChange={e => setEditTelefone(e.target.value)} />
+                  ) : (
+                    pedido.telefone
+                  )}</div>
+                  <div className="">Preço: R$ {pedido.livro_preco}</div>
+                  <div className="">Quantidade: {pedido.quantidade}</div>
+                  <div className="">Pedido: {formatarData(pedido.data)}</div>
                 </div>
-                <div className="acoes">
+                <div className="acoes" style={{display: 'flex', gap: 12}}>
+                  {editando === pedido.pedido_id ? (
+                    <>
+                      <button className="texto t1" style={{background: '#A27B5C', color: '#fff', border: 0, borderRadius: 4, padding: '4px 12px'}} onClick={() => salvarEdicao(pedido.pedido_id)}>Salvar</button>
+                      <button className="texto t1" style={{background: '#ccc', color: '#222', border: 0, borderRadius: 4, padding: '4px 12px'}} onClick={cancelarEdicao}>Cancelar</button>
+                    </>
+                  ) : (
+                    <button className="texto t1" style={{background: '#A27B5C', color: '#fff', border: 0, borderRadius: 4, padding: '4px 12px'}} onClick={() => abrirEdicao(pedido)}>Editar</button>
+                  )}
                   <div className="delete" style={{cursor: 'pointer'}} onClick={() => cancelarPedido(pedido.pedido_id)}>
                     <i className="bi bi-trash" style={{marginRight: 6, color: '#A27B5C', fontSize: '1.1em', verticalAlign: 'middle'}}></i>
                     <span>Cancelar Pedido</span>

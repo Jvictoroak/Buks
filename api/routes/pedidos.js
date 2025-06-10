@@ -55,4 +55,21 @@ router.delete('/:pedidoID', (req, res) => {
   });
 });
 
-module.exports = router; 
+// Editar telefone e nome_destinatario de um pedido
+router.put('/:pedidoID', (req, res) => {
+  const { pedidoID } = req.params;
+  const { telefone, nome_destinatario } = req.body;
+  if (!telefone || !nome_destinatario) {
+    return res.status(400).json({ error: 'Telefone e nome do destinatário são obrigatórios' });
+  }
+  const sql = 'UPDATE pedido SET telefone = ?, nome_destinatario = ? WHERE id = ?';
+  connection.query(sql, [telefone, nome_destinatario, pedidoID], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Pedido não encontrado' });
+    }
+    res.status(200).json({ message: 'Pedido atualizado com sucesso' });
+  });
+});
+
+module.exports = router;
