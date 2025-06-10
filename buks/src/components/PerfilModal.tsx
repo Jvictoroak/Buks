@@ -61,17 +61,23 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
     setEditando(true);
   };
 
+  const token = localStorage.getItem('token');
   const handleSalvar = async () => {
     try {
       const response = await fetch(`http://localhost:3001/usuarios/update/${usuario.id}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify(form)
       });
+      if (response.status === 401) {
+        alert('Sessão expirada. Faça login novamente.');
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+        return;
+      }
       if (response.ok) {
         const atualizado = { ...usuario, ...form };
         setUsuario(atualizado);
-        // Atualiza o token no localStorage se necessário
         setEditando(false);
         alert('Dados atualizados com sucesso!');
       } else {
@@ -86,8 +92,15 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
     if (!window.confirm('Tem certeza que deseja excluir sua conta?')) return;
     try {
       const response = await fetch(`http://localhost:3001/usuarios/delete/${usuario.id}`, {
-        method: 'POST'
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
       });
+      if (response.status === 401) {
+        alert('Sessão expirada. Faça login novamente.');
+        localStorage.removeItem('token');
+        window.location.href = '/login';
+        return;
+      }
       if (response.ok) {
         localStorage.removeItem('token');
         alert('Conta excluída com sucesso!');

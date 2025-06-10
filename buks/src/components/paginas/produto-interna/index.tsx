@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { toUrlFriendly } from '../../../utils/utils'
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 interface Produto {
   nome: string;
@@ -20,9 +21,33 @@ function ProdutoInterna() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [produto, setProduto] = useState<Produto | undefined>(undefined);
 
+  const token = localStorage.getItem('token');
   useEffect(() => {
-    fetch('http://localhost:3001/livros')
-      .then(response => response.json())
+    fetch('http://localhost:3001/livros', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          Swal.fire({
+            title: 'Sessão expirada',
+            text: 'Faça login novamente para continuar.',
+            icon: 'warning',
+            customClass: {
+              popup: 'swal-custom-popup',
+              title: 'swal-custom-title',
+              confirmButton: 'swal-custom-confirm',
+              icon: 'swal-custom-icon',
+            },
+          }).then(() => {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+          });
+          throw new Error('Sessão expirada');
+        }
+        return response.json();
+      })
       .then(data => setProdutos(data))
       .catch(error => console.error('Erro ao buscar produtos:', error));
   }, []);

@@ -25,13 +25,34 @@ export default function Meus_pedidos() {
 
   useEffect(() => {
     if (!usuarioId) return;
-    fetch(`http://localhost:3001/pedidos/${usuarioId}`)
+    fetch(`http://localhost:3001/pedidos/${usuarioId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(res => {
+        if (res.status === 401) {
+          Swal.fire({
+            title: 'Sessão expirada',
+            text: 'Faça login novamente para continuar.',
+            icon: 'warning',
+            customClass: {
+              popup: 'swal-custom-popup',
+              title: 'swal-custom-title',
+              confirmButton: 'swal-custom-confirm',
+              icon: 'swal-custom-icon',
+            },
+          }).then(() => {
+            localStorage.removeItem('token');
+            window.location.href = '/login';
+          });
+          throw new Error('Sessão expirada');
+        }
         if (!res.ok) throw new Error('Erro ao buscar pedidos');
         return res.json();
       })
       .then(data => setPedidos(data))
-      .catch(() => setErro('Erro ao buscar pedidos'))
+      .catch((e) => setErro(e.message))
       .finally(() => setLoading(false));
   }, [usuarioId]);
 
@@ -55,7 +76,27 @@ export default function Meus_pedidos() {
     try {
       const response = await fetch(`http://localhost:3001/pedidos/${pedido_id}`, {
         method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
+      if (response.status === 401) {
+        Swal.fire({
+          title: 'Sessão expirada',
+          text: 'Faça login novamente para continuar.',
+          icon: 'warning',
+          customClass: {
+            popup: 'swal-custom-popup',
+            title: 'swal-custom-title',
+            confirmButton: 'swal-custom-confirm',
+            icon: 'swal-custom-icon',
+          },
+        }).then(() => {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        });
+        return;
+      }
       if (!response.ok) throw new Error('Erro ao cancelar pedido');
       setPedidos(pedidos.filter(p => p.pedido_id !== pedido_id));
       Swal.fire({
@@ -71,10 +112,10 @@ export default function Meus_pedidos() {
         timer: 1800,
         showConfirmButton: false
       });
-    } catch {
+    } catch (e) {
       Swal.fire({
         title: 'Erro',
-        text: 'Erro ao cancelar pedido',
+        text: e instanceof Error ? e.message : 'Erro ao cancelar pedido',
         icon: 'error',
         customClass: {
           popup: 'swal-custom-popup',
@@ -102,9 +143,29 @@ export default function Meus_pedidos() {
     try {
       const response = await fetch(`http://localhost:3001/pedidos/${pedido_id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify({ telefone: editTelefone, nome_destinatario: editNome })
       });
+      if (response.status === 401) {
+        Swal.fire({
+          title: 'Sessão expirada',
+          text: 'Faça login novamente para continuar.',
+          icon: 'warning',
+          customClass: {
+            popup: 'swal-custom-popup',
+            title: 'swal-custom-title',
+            confirmButton: 'swal-custom-confirm',
+            icon: 'swal-custom-icon',
+          },
+        }).then(() => {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        });
+        return;
+      }
       if (!response.ok) throw new Error('Erro ao editar pedido');
       setPedidos(pedidos.map(p => p.pedido_id === pedido_id ? { ...p, telefone: editTelefone, nome_destinatario: editNome } : p));
       cancelarEdicao();
@@ -121,10 +182,10 @@ export default function Meus_pedidos() {
         timer: 1800,
         showConfirmButton: false
       });
-    } catch {
+    } catch (e) {
       Swal.fire({
         title: 'Erro',
-        text: 'Erro ao editar pedido',
+        text: e instanceof Error ? e.message : 'Erro ao editar pedido',
         icon: 'error',
         customClass: {
           popup: 'swal-custom-popup',

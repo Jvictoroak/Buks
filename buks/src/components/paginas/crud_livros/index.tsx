@@ -3,6 +3,7 @@ import './index.css'
 import logo from '../../../assets/img/logo.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { showSwal } from '../../../utils/alertasSwal';
+import Swal from 'sweetalert2';
 
 function Crud_Livros() {
     const [livros, setLivros] = useState<any[]>([]);
@@ -12,9 +13,33 @@ function Crud_Livros() {
     const [novoLivro, setNovoLivro] = useState<any>({ nome: '', descricao: '', preco: '', imagem: null, imagemFile: null, estoque: '' });
     const [imagemPopup, setImagemPopup] = useState<string | null>(null);
 
+    const token = localStorage.getItem('token');
     useEffect(() => {
-        fetch('http://localhost:3001/livros')
-            .then(response => response.json())
+        fetch('http://localhost:3001/livros', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                if (response.status === 401) {
+                    Swal.fire({
+                        title: 'Sessão expirada',
+                        text: 'Faça login novamente para continuar.',
+                        icon: 'warning',
+                        customClass: {
+                            popup: 'swal-custom-popup',
+                            title: 'swal-custom-title',
+                            confirmButton: 'swal-custom-confirm',
+                            icon: 'swal-custom-icon',
+                        },
+                    }).then(() => {
+                        localStorage.removeItem('token');
+                        window.location.href = '/login';
+                    });
+                    throw new Error('Sessão expirada');
+                }
+                return response.json();
+            })
             .then(data => setLivros(data))
             .catch(error => console.error('Erro ao buscar livros:', error));
     }, []);
@@ -46,14 +71,29 @@ function Crud_Livros() {
     };
 
     const handleSalvar = async (id: number) => {
-        // Aqui você pode fazer o fetch para atualizar o livro na API
-        // Exemplo:
         try {
             const response = await fetch(`http://localhost:3001/livros/${id}`, {
                 method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
                 body: JSON.stringify(livroEditado)
             });
+            if (response.status === 401) {
+                Swal.fire({
+                    title: 'Sessão expirada',
+                    text: 'Faça login novamente para continuar.',
+                    icon: 'warning',
+                    customClass: {
+                        popup: 'swal-custom-popup',
+                        title: 'swal-custom-title',
+                        confirmButton: 'swal-custom-confirm',
+                        icon: 'swal-custom-icon',
+                    },
+                }).then(() => {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                });
+                return;
+            }
             if (response.ok) {
                 setLivros(livros.map(l => l.id === id ? { ...livroEditado, id } : l));
                 setEditandoId(null);
@@ -71,8 +111,26 @@ function Crud_Livros() {
         if (!window.confirm('Tem certeza que deseja excluir este livro?')) return;
         try {
             const response = await fetch(`http://localhost:3001/livros/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: { 'Authorization': `Bearer ${token}` }
             });
+            if (response.status === 401) {
+                Swal.fire({
+                    title: 'Sessão expirada',
+                    text: 'Faça login novamente para continuar.',
+                    icon: 'warning',
+                    customClass: {
+                        popup: 'swal-custom-popup',
+                        title: 'swal-custom-title',
+                        confirmButton: 'swal-custom-confirm',
+                        icon: 'swal-custom-icon',
+                    },
+                }).then(() => {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                });
+                return;
+            }
             if (response.ok) {
                 setLivros(livros.filter(l => l.id !== id));
                 showSwal({ icon: 'success', title: 'Sucesso', text: 'Livro excluído!' });
@@ -135,9 +193,26 @@ function Crud_Livros() {
         };
         const response = await fetch('http://localhost:3001/livros', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
             body: JSON.stringify(body)
         });
+        if (response.status === 401) {
+            Swal.fire({
+                title: 'Sessão expirada',
+                text: 'Faça login novamente para continuar.',
+                icon: 'warning',
+                customClass: {
+                    popup: 'swal-custom-popup',
+                    title: 'swal-custom-title',
+                    confirmButton: 'swal-custom-confirm',
+                    icon: 'swal-custom-icon',
+                },
+            }).then(() => {
+                localStorage.removeItem('token');
+                window.location.href = '/login';
+            });
+            return;
+        }
         if (response.ok) {
             const data = await response.json();
             setLivros([...livros, { ...body, id: data.id }]);

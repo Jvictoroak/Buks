@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const connection = require('../db/connection');
+const auth = require('../middleware/auth');
+
+// Proteger todas as rotas de pedidos
+router.use(auth);
 
 // Criar pedido
 router.post('/', (req, res) => {

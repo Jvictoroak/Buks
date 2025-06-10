@@ -56,9 +56,29 @@ function PedidoFormulario() {
     try {
       const response = await fetch('http://localhost:3001/pedidos', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify(pedido),
       });
+      if (response.status === 401) {
+        Swal.fire({
+          title: 'Sessão expirada',
+          text: 'Faça login novamente para continuar.',
+          icon: 'warning',
+          customClass: {
+            popup: 'swal-custom-popup',
+            title: 'swal-custom-title',
+            confirmButton: 'swal-custom-confirm',
+            icon: 'swal-custom-icon',
+          },
+        }).then(() => {
+          localStorage.removeItem('token');
+          window.location.href = '/login';
+        });
+        return;
+      }
       if (response.ok) {
         Swal.fire('Sucesso', 'Pedido realizado com sucesso!', 'success');
         setForm({

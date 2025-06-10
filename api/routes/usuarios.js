@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../db/connection');
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
 
 // Cadastrar usuário
 router.post('/', (req, res) => {
@@ -44,6 +45,9 @@ router.post('/login', (req, res) => {
     }
   });
 });
+
+// Proteger rotas abaixo com JWT
+router.use(auth);
 
 // Atualizar usuário
 router.post('/update/:id', (req, res) => {

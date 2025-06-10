@@ -7,15 +7,38 @@ import './index.css'
 import autores from '../../../data/autores.json'
 import {toUrlFriendly} from '../../../utils/utils'
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2';
 
 export default function Home() {
-
-    const [produtos, setProdutos] = useState([]);
-    
+    const [produtos, setProdutos] = useState<any[]>([]);
+    const token = localStorage.getItem('token');
     useEffect(() => {
-    fetch('http://localhost:3001/livros')
-        .then(response => response.json())
-        .then(data => setProdutos(data))
+        fetch('http://localhost:3001/livros', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            if (response.status === 401) {
+                Swal.fire({
+                    title: 'Sessão expirada',
+                    text: 'Faça login novamente para continuar.',
+                    icon: 'warning',
+                    customClass: {
+                        popup: 'swal-custom-popup',
+                        title: 'swal-custom-title',
+                        confirmButton: 'swal-custom-confirm',
+                        icon: 'swal-custom-icon',
+                    },
+                }).then(() => {
+                    localStorage.removeItem('token');
+                    window.location.href = '/login';
+                });
+                throw new Error('Sessão expirada');
+            }
+            return response.json();
+        })
+        .then(data => Array.isArray(data) ? setProdutos(data) : setProdutos([]))
         .catch(error => console.error('Erro ao buscar produtos:', error));
     }, []);
     
