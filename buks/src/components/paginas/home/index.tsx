@@ -13,7 +13,7 @@ export default function Home() {
     const [produtos, setProdutos] = useState([]);
     
     useEffect(() => {
-    fetch('http://localhost:3001/produtos')
+    fetch('http://localhost:3001/livros')
         .then(response => response.json())
         .then(data => setProdutos(data))
         .catch(error => console.error('Erro ao buscar produtos:', error));

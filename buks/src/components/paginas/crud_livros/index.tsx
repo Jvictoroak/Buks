@@ -13,7 +13,7 @@ function Crud_Livros() {
     const [imagemPopup, setImagemPopup] = useState<string | null>(null);
 
     useEffect(() => {
-        fetch('http://localhost:3001/produtos')
+        fetch('http://localhost:3001/livros')
             .then(response => response.json())
             .then(data => setLivros(data))
             .catch(error => console.error('Erro ao buscar livros:', error));

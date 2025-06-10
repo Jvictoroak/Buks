@@ -24,4 +24,21 @@ router.post('/', (req, res) => {
   });
 });
 
+// Buscar todos os pedidos de um usuário específico
+router.get('/:usuarioID', (req, res) => {
+  const { usuarioID } = req.params;
+  const sql = `SELECT pedido.id AS pedido_id, pedido.data, pedido.complemento, pedido.telefone, pedido.cep,
+    possui.fk_livros_id AS livro_id, possui.quantidade,
+    livros.nome AS livro_nome, livros.preco AS livro_preco, livros.descricao AS livro_descricao
+    FROM pedido
+    LEFT JOIN possui ON pedido.id = possui.fk_pedido_id
+    LEFT JOIN livros ON possui.fk_livros_id = livros.id
+    WHERE pedido.fk_usuario_id = ?
+    ORDER BY pedido.data DESC`;
+  connection.query(sql, [usuarioID], (err, results) => {
+    if (err) return res.status(500).json({ error: err });
+    res.json(results);
+  });
+});
+
 module.exports = router;
