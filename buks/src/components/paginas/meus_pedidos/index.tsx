@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import Swal from 'sweetalert2';
 import './index.css'
 import { formatarData } from '../../../utils/utils';
 
@@ -31,6 +32,57 @@ export default function Meus_pedidos() {
       .finally(() => setLoading(false));
   }, [usuarioId]);
 
+  // Função para cancelar pedido
+  const cancelarPedido = async (pedido_id: number) => {
+    const confirm = await Swal.fire({
+      title: 'Cancelar pedido?',
+      text: 'Tem certeza que deseja cancelar este pedido?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, cancelar',
+      cancelButtonText: 'Não',
+      customClass: {
+        popup: 'swal-custom-popup',
+        title: 'swal-custom-title',
+        confirmButton: 'swal-custom-confirm',
+        icon: 'swal-custom-icon',
+      },
+    });
+    if (!confirm.isConfirmed) return;
+    try {
+      const response = await fetch(`http://localhost:3001/pedidos/${pedido_id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) throw new Error('Erro ao cancelar pedido');
+      setPedidos(pedidos.filter(p => p.pedido_id !== pedido_id));
+      Swal.fire({
+        title: 'Cancelado!',
+        text: 'Pedido cancelado com sucesso.',
+        icon: 'success',
+        customClass: {
+          popup: 'swal-custom-popup',
+          title: 'swal-custom-title',
+          confirmButton: 'swal-custom-confirm',
+          icon: 'swal-custom-icon',
+        },
+        timer: 1800,
+        showConfirmButton: false
+      });
+    } catch {
+      Swal.fire({
+        title: 'Erro',
+        text: 'Erro ao cancelar pedido',
+        icon: 'error',
+        customClass: {
+          popup: 'swal-custom-popup',
+          title: 'swal-custom-title',
+          confirmButton: 'swal-custom-confirm',
+          icon: 'swal-custom-icon',
+        },
+      });
+    }
+  }
+
   return (
     <main className='meus_pedidos'>
       <div className="conteudo-1140">
@@ -54,7 +106,7 @@ export default function Meus_pedidos() {
                   </div>
                 </div>
                 <div className="acoes">
-                  <div className="delete">
+                  <div className="delete" style={{cursor: 'pointer'}} onClick={() => cancelarPedido(pedido.pedido_id)}>
                     <i className="bi bi-trash" style={{marginRight: 6, color: '#A27B5C', fontSize: '1.1em', verticalAlign: 'middle'}}></i>
                     <span>Cancelar Compra</span>
                   </div>

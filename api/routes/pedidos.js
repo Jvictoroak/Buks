@@ -41,4 +41,18 @@ router.get('/:usuarioID', (req, res) => {
   });
 });
 
+// Deletar um pedido e suas associações em Possui
+router.delete('/:pedidoID', (req, res) => {
+  const { pedidoID } = req.params;
+  // Exclui da tabela Pedido, o que em cascata exclui de Possui
+  const sql = 'DELETE FROM pedido WHERE id = ?';
+  connection.query(sql, [pedidoID], (err, result) => {
+    if (err) return res.status(500).json({ error: err });
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Pedido não encontrado' });
+    }
+    res.status(200).json({ message: 'Pedido cancelado com sucesso' });
+  });
+});
+
 module.exports = router;
