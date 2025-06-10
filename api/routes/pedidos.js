@@ -4,12 +4,12 @@ const connection = require('../db/connection');
 
 // Criar pedido
 router.post('/', (req, res) => {
-  const { data, complemento, telefone, cep, fk_usuario_id, livro_id, quantidade } = req.body;
-  if (!data || !telefone || !cep || !fk_usuario_id || !livro_id || !quantidade) {
+  const { data, complemento, telefone, cep, fk_usuario_id, livro_id, quantidade, nome_destinatario } = req.body;
+  if (!data || !telefone || !cep || !fk_usuario_id || !livro_id || !quantidade || !nome_destinatario) {
     return res.status(400).json({ error: 'Dados do pedido incompletos' });
   }
-  const sqlPedido = 'INSERT INTO Pedido (data, complemento, telefone, cep, fk_usuario_id) VALUES (?, ?, ?, ?, ?)';
-  connection.query(sqlPedido, [data, complemento, telefone, cep, fk_usuario_id], (err, result) => {
+  const sqlPedido = 'INSERT INTO Pedido (data, complemento, telefone, cep, fk_usuario_id, nome_destinatario) VALUES (?, ?, ?, ?, ?, ?)';
+  connection.query(sqlPedido, [data, complemento, telefone, cep, fk_usuario_id, nome_destinatario], (err, result) => {
     if (err) {
       return res.status(500).json({ error: err });
     }
@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
 // Buscar todos os pedidos de um usuário específico
 router.get('/:usuarioID', (req, res) => {
   const { usuarioID } = req.params;
-  const sql = `SELECT pedido.id AS pedido_id, pedido.data, pedido.complemento, pedido.telefone, pedido.cep,
+  const sql = `SELECT pedido.id AS pedido_id, pedido.nome_destinatario, pedido.data, pedido.complemento, pedido.telefone, pedido.cep,
     possui.fk_livros_id AS livro_id, possui.quantidade,
     livros.nome AS livro_nome, livros.preco AS livro_preco, livros.descricao AS livro_descricao
     FROM pedido
@@ -55,4 +55,4 @@ router.delete('/:pedidoID', (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = router; 

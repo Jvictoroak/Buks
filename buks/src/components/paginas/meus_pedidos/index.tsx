@@ -99,16 +99,25 @@ export default function Meus_pedidos() {
                     Livro: {pedido.livro_nome}
                   </div>
                   <div className="">
+                    Destinatário: {pedido.nome_destinatario} <br/>
+                  </div>
+                  <div className="">
+                    Telefone: {pedido.telefone} <br/>
+                  </div>
+                  <div className="">
+                    Preço: R$ {pedido.livro_preco} <br/>
+                  </div>
+                  <div className="">
                     Quantidade: {pedido.quantidade} <br/>
                   </div>
                   <div className="">
-                    Data: {formatarData(pedido.data)}
+                    Pedido: {formatarData(pedido.data)}
                   </div>
                 </div>
                 <div className="acoes">
                   <div className="delete" style={{cursor: 'pointer'}} onClick={() => cancelarPedido(pedido.pedido_id)}>
                     <i className="bi bi-trash" style={{marginRight: 6, color: '#A27B5C', fontSize: '1.1em', verticalAlign: 'middle'}}></i>
-                    <span>Cancelar Compra</span>
+                    <span>Cancelar Pedido</span>
                   </div>
                 </div>
               </li>

@@ -31,6 +31,7 @@ CREATE TABLE Livros (
 -- Criação da tabela Pedido
 CREATE TABLE Pedido (
     id INT PRIMARY KEY AUTO_INCREMENT,
+    nome_destinatario VARCHAR(50),
     data DATE NOT NULL,
     complemento VARCHAR(100),
     telefone VARCHAR(20) NOT NULL,

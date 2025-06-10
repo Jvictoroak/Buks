@@ -18,9 +18,12 @@ function PedidoFormulario() {
     } catch { }
   }
   const [form, setForm] = useState({
+    nome_destinatario: '',
     complemento: '',
     telefone: '',
     cep: '',
+    rua: '',
+    numero: '',
     fk_usuario_id: usuarioId,
     livro_id: produto?.id || '',
     quantidade: 1,
@@ -29,6 +32,20 @@ function PedidoFormulario() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
+
+    // Busca endereço pelo CEP ao digitar 8 dígitos
+    if (name === 'cep' && value.replace(/\D/g, '').length === 8) {
+      fetch(`https://viacep.com.br/ws/${value.replace(/\D/g, '')}/json/`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data.erro) {
+            setForm(f => ({
+              ...f,
+              rua: data.logradouro || '',
+            }));
+          }
+        });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,9 +62,12 @@ function PedidoFormulario() {
       if (response.ok) {
         Swal.fire('Sucesso', 'Pedido realizado com sucesso!', 'success');
         setForm({
+          nome_destinatario: '',
           complemento: '',
           telefone: '',
           cep: '',
+          rua: '',
+          numero: '',
           fk_usuario_id: usuarioId,
           livro_id: produto?.id || '',
           quantidade: 1,
@@ -71,6 +91,10 @@ function PedidoFormulario() {
           </div>
           <form onSubmit={handleSubmit}>
             <div>
+              <label className='texto t1'>Nome do Destinatário:</label>
+              <input type="text" name="nome_destinatario" value={form.nome_destinatario} onChange={handleChange} required />            
+            </div>
+            <div>
               <label className='texto t1'>Quantidade:</label>
               <input type="number" name="quantidade" value={form.quantidade} min={1} max={produto?.estoque || 1} onChange={handleChange} required />
             </div>
@@ -81,6 +105,14 @@ function PedidoFormulario() {
             <div>
               <label className='texto t1'>CEP:</label>
               <input type="text" name="cep" value={form.cep} onChange={handleChange} maxLength={9} required />
+            </div>
+            <div>
+              <label className='texto t1'>Rua:</label>
+              <input type="text" name="rua" value={form.rua} onChange={handleChange} required />
+            </div>
+            <div>
+              <label className='texto t1'>Número:</label>
+              <input type="text" name="numero" value={form.numero} onChange={handleChange} required />
             </div>
             <div>
               <label className='texto t1'>Complemento:</label>

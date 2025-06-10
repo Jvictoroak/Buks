@@ -25,9 +25,9 @@ function Cabecalho() {
               <ul className='navegacao'>
                   <li className='ativo'><Link to='/' className='texto t1 pag'><p>Inicio</p></Link></li>
                   <li className=''><Link to="/produtos" className='texto t1 pag'><p>Produtos</p></Link></li>
-                  <li className=''><Link to="/contato" className='texto t1 pag'><p>Contato</p></Link></li>
                   <li className=''><Link to="/meus_pedidos" className='texto t1 pag'><p>Meus pedidos</p></Link></li>
                   <li className=''><div className='texto t1 pag' onClick={()=>setModalAberto(true)}><p>Meu Perfil</p></div></li>
+                  <li className=''><Link to="/contato" className='texto t1 pag'><p>Contato</p></Link></li>
               </ul>
           </nav>
           <button className="logout-btn btn btn-outline-danger position-absolute top-0 end-0 mt-3 me-4" onClick={handleLogout} title="Sair">
