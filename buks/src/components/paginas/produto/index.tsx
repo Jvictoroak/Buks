@@ -41,9 +41,10 @@ function Produto() {
   }, []);
 
 interface Produto {
+  id: number;
   nome: string;
   preco: number;
-  imagem: string;
+  imagem?: string;
 }
 
   return (
@@ -53,7 +54,12 @@ interface Produto {
                 <div className="titulo t1"><p>Nossos Produtos</p></div>
                 <div className="cards">
                     {produtos.map((produto: Produto, index: number) => (
-                        <CardProduto nome={produto.nome} preco={produto.preco} imagem={produto.imagem} link={toUrlFriendly(produto.nome)} />
+                        <CardProduto
+                            nome={produto.nome}
+                            preco={produto.preco}
+                            imagem={`http://localhost:3001/livros/${produto.id}/imagem`}
+                            link={toUrlFriendly(produto.nome)}
+                        />
                     ))}
                 </div>
             </div>

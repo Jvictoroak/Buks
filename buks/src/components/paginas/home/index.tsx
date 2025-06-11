@@ -4,7 +4,7 @@ import CardProduto from '../../cards/produto'
 import CardAutor from '../../cards/autor' 
 import './index.css'
 // import produtos from '../../../data/produtos.json'
-import autores from '../../../data/autores.json'
+// import autores from '../../../data/autores.json'
 import {toUrlFriendly} from '../../../utils/utils'
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
@@ -43,9 +43,10 @@ export default function Home() {
     }, []);
     
     interface Produto {
+        id: number;
         nome: string;
         preco: number;
-        imagem: string;
+        imagem?: string;
     }
     return (
     <main className="home">
@@ -68,7 +69,12 @@ export default function Home() {
                     <div className="titulo t1"><p>Nossos Produtos</p></div>
                     <div className="cards">
                         {produtos.slice(0,8).map((produto: Produto, index: number) => (
-                            <CardProduto nome={produto.nome} preco={produto.preco} imagem={produto.imagem} link={toUrlFriendly(produto.nome)} />
+                            <CardProduto
+                                nome={produto.nome}
+                                preco={produto.preco}
+                                imagem={`http://localhost:3001/livros/${produto.id}/imagem`}
+                                link={toUrlFriendly(produto.nome)}
+                            />
                         ))}
                     </div>
                 </div>
@@ -79,9 +85,9 @@ export default function Home() {
                 <div className="conteudo">
                     <div className="titulo t1"><p>Nossos Autores</p></div>
                     <div className="cards">
-                        {autores.slice(0,5).map((autor, index) => (
+                        {/* {autores.slice(0,5).map((autor, index) => (
                             <CardAutor nome={autor.nome} imagem={autor.imagem} link={toUrlFriendly(autor.nome)}/>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             </div>
