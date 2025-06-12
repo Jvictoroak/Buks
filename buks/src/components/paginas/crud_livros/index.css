@@ -25,3 +25,27 @@
 .icone-cancelar { color: var(--cinza, #686868); }
 
 .icone-acao:hover { filter: brightness(1.2); }
+
+.btn-adicionar-livro {
+  background: var(--verde-1, #2C3930);
+  color: var(--branco, #fff);
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 18px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(44, 57, 48, 0.08);
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-adicionar-livro:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-adicionar-livro:hover:not(:disabled) {
+  background: var(--laranja-1, #A27B5C);
+}

@@ -233,7 +233,7 @@ function Crud_Livros() {
         <div className="crud_livros">
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <h2 className="titulo t1">Gerenciar Livros</h2>
-                <button className="btn btn-primary" onClick={handleAdicionar} disabled={adicionando} style={{ marginLeft: 16 }}>Adicionar Livro</button>
+                <button className="btn btn-adicionar-livro" onClick={handleAdicionar} disabled={adicionando} style={{ marginLeft: 16 }}>Adicionar Livro</button>
             </div>
             <table className="tabela-livros">
                 <thead>
