@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './PerfilModal.css';
 import { jwtDecode } from "jwt-decode";
+import { showSwal } from '../utils/alertasSwal';
 
 interface PerfilModalProps {
   isOpen: boolean;
@@ -70,7 +71,7 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
         body: JSON.stringify(form)
       });
       if (response.status === 401) {
-        alert('Sessão expirada. Faça login novamente.');
+        showSwal({ icon: 'warning', title: 'Sessão expirada', text: 'Faça login novamente.' });
         localStorage.removeItem('token');
         window.location.href = '/login';
         return;
@@ -79,37 +80,52 @@ const PerfilModal: React.FC<PerfilModalProps> = ({ isOpen, onClose }) => {
         const atualizado = { ...usuario, ...form };
         setUsuario(atualizado);
         setEditando(false);
-        alert('Dados atualizados com sucesso!');
+        showSwal({ icon: 'success', title: 'Sucesso', text: 'Dados atualizados com sucesso!' });
       } else {
-        alert('Erro ao atualizar dados.');
+        showSwal({ icon: 'error', title: 'Erro', text: 'Erro ao atualizar dados.' });
       }
     } catch (err) {
-      alert('Erro ao conectar com o servidor.');
+      showSwal({ icon: 'error', title: 'Erro', text: 'Erro ao conectar com o servidor.' });
     }
   };
 
   const handleExcluir = async () => {
-    if (!window.confirm('Tem certeza que deseja excluir sua conta?')) return;
+    const Swal = (await import('sweetalert2')).default;
+    const confirm = await Swal.fire({
+      icon: 'warning',
+      title: 'Excluir conta?',
+      text: 'Tem certeza que deseja excluir sua conta? Essa ação não poderá ser desfeita.',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, excluir',
+      cancelButtonText: 'Cancelar',
+      customClass: {
+        popup: 'swal-custom-popup',
+        title: 'swal-custom-title',
+        confirmButton: 'swal-custom-confirm',
+        icon: 'swal-custom-icon',
+      },
+    });
+    if (!confirm.isConfirmed) return;
     try {
       const response = await fetch(`http://localhost:3001/usuarios/delete/${usuario.id}`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.status === 401) {
-        alert('Sessão expirada. Faça login novamente.');
+        showSwal({ icon: 'warning', title: 'Sessão expirada', text: 'Faça login novamente.' });
         localStorage.removeItem('token');
         window.location.href = '/login';
         return;
       }
       if (response.ok) {
         localStorage.removeItem('token');
-        alert('Conta excluída com sucesso!');
+        showSwal({ icon: 'success', title: 'Conta excluída', text: 'Conta excluída com sucesso!' });
         window.location.href = '/';
       } else {
-        alert('Erro ao excluir conta.');
+        showSwal({ icon: 'error', title: 'Erro', text: 'Erro ao excluir conta.' });
       }
     } catch (err) {
-      alert('Erro ao conectar com o servidor.');
+      showSwal({ icon: 'error', title: 'Erro', text: 'Erro ao conectar com o servidor.' });
     }
   };
 

@@ -108,7 +108,21 @@ function Crud_Livros() {
     };
 
     const handleExcluir = async (id: number) => {
-        if (!window.confirm('Tem certeza que deseja excluir este livro?')) return;
+        const confirm = await Swal.fire({
+            icon: 'warning',
+            title: 'Excluir livro?',
+            text: 'Tem certeza que deseja excluir este livro? Essa ação não poderá ser desfeita.',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, excluir',
+            cancelButtonText: 'Cancelar',
+            customClass: {
+                popup: 'swal-custom-popup',
+                title: 'swal-custom-title',
+                confirmButton: 'swal-custom-confirm',
+                icon: 'swal-custom-icon',
+            },
+        });
+        if (!confirm.isConfirmed) return;
         try {
             const response = await fetch(`http://localhost:3001/livros/${id}`, {
                 method: 'DELETE',
