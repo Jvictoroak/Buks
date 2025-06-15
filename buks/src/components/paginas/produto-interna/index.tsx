@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 interface Produto {
+  id: number;
   nome: string;
   preco: number;
   imagem: string;
@@ -69,7 +70,9 @@ function ProdutoInterna() {
         <div className="conteudo">
             <div className="imagens">
               <div className="imagem-container">
-                <div className="imagem-container"><img src={produto.imagem} alt="" className="imagem" /></div>            
+                <div className="imagem-container">
+                  <img src={`http://localhost:3001/livros/${produto.id}/imagem`} alt="" className="imagem" />
+                </div>            
               </div>
             </div>
             <div className="textos">
