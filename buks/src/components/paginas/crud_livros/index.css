@@ -49,3 +49,57 @@
 .btn-adicionar-livro:hover:not(:disabled) {
   background: var(--laranja-1, #A27B5C);
 }
+
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[name="descricao"],
+input[name="nome"],
+.input-descricao,
+textarea[name="descricao"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--verde-1, #F5EEDC);
+  border-radius: 7px;
+  background: #fff;
+  font-size: 1rem;
+  font-family: "Nunito", sans-serif;
+  color: var(--preto, #222);
+  margin-top: 4px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  min-height: 44px;
+  resize: vertical;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[name="descricao"]:focus,
+input[name="nome"]:focus,
+.input-descricao:focus,
+textarea[name="descricao"]:focus {
+  border-color: var(--laranja-1, #A27B5C);
+  box-shadow: 0 0 0 2px rgba(162, 123, 92, 0.15);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[name="descricao"]::placeholder,
+input[name="nome"]::placeholder,
+.input-descricao::placeholder,
+textarea[name="descricao"]::placeholder {
+  color: #b0a99f;
+  opacity: 1;
+}

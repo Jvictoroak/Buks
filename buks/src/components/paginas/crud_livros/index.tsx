@@ -71,6 +71,28 @@ function Crud_Livros() {
     };
 
     const handleSalvar = async (id: number) => {
+        // Validação dos campos obrigatórios
+        if (!livroEditado.nome || !livroEditado.descricao || !livroEditado.preco || !livroEditado.estoque) {
+            showSwal({ icon: 'warning', title: 'Campos obrigatórios', text: 'Preencha todos os campos antes de salvar.' });
+            return;
+        }
+        if (Number(livroEditado.preco) <= 0) {
+            showSwal({ icon: 'warning', title: 'Preço inválido', text: 'O preço deve ser maior que zero.' });
+            return;
+        }
+        if (Number(livroEditado.estoque) <= 0) {
+            showSwal({ icon: 'warning', title: 'Estoque inválido', text: 'O estoque deve ser maior que zero.' });
+            return;
+        }
+        // Se não houver imagem, define a padrão
+        if (!livroEditado.imagem && !livroEditado.imagemFile) {
+            setLivroEditado((prev: any) => ({
+                ...prev,
+                imagem: require('../../../assets/img/livro_default.png')
+            }));
+            showSwal({ icon: 'info', title: 'Imagem padrão', text: 'Nenhuma imagem enviada. A imagem padrão será usada.' });
+            return;
+        }
         try {
             const response = await fetch(`http://localhost:3001/livros/${id}`, {
                 method: 'PUT',
@@ -178,6 +200,28 @@ function Crud_Livros() {
     };
 
     const handleSalvarNovoLivro = async () => {
+        // Validação dos campos obrigatórios
+        if (!novoLivro.nome || !novoLivro.descricao || !novoLivro.preco || !novoLivro.estoque) {
+            showSwal({ icon: 'warning', title: 'Campos obrigatórios', text: 'Preencha todos os campos antes de salvar.' });
+            return;
+        }
+        if (Number(novoLivro.preco) <= 0) {
+            showSwal({ icon: 'warning', title: 'Preço inválido', text: 'O preço deve ser maior que zero.' });
+            return;
+        }
+        if (Number(novoLivro.estoque) <= 0) {
+            showSwal({ icon: 'warning', title: 'Estoque inválido', text: 'O estoque deve ser maior que zero.' });
+            return;
+        }
+        // Se não houver imagem, define a padrão
+        if (!novoLivro.imagem && !novoLivro.imagemFile) {
+            setNovoLivro((prev: any) => ({
+                ...prev,
+                imagem: require('../../../assets/img/livro_default.png')
+            }));
+            showSwal({ icon: 'info', title: 'Imagem padrão', text: 'Nenhuma imagem enviada. A imagem padrão será usada.' });
+            return;
+        }
         try {
             let imagemBase64 = null;
             if (novoLivro.imagemFile) {
@@ -274,14 +318,14 @@ function Crud_Livros() {
                             </td>
                             <td>
                                 {editandoId === livro.id ? (
-                                    <textarea name="descricao" value={livroEditado.descricao} onChange={handleChange} />
+                                    <textarea name="descricao" value={livroEditado.descricao} onChange={handleChange} className="input-descricao" />
                                 ) : (
                                     livro.descricao
                                 )}
                             </td>
                             <td>
                                 {editandoId === livro.id ? (
-                                    <input name="preco" type="number" value={livroEditado.preco} onChange={handleChange} />
+                                    <input name="preco" type="number" value={livroEditado.preco} onChange={handleChange} min={0.01} step={0.01} />
                                 ) : (
                                     `R$ ${Number(livro.preco).toFixed(2)}`
                                 )}
@@ -309,7 +353,7 @@ function Crud_Livros() {
                             </td>
                             <td>
                                 {editandoId === livro.id ? (
-                                    <input name="estoque" type="number" value={livroEditado.estoque} onChange={handleChange} />
+                                    <input name="estoque" type="number" value={livroEditado.estoque} onChange={handleChange} min={1} step={1} />
                                 ) : (
                                     livro.estoque
                                 )}
@@ -333,10 +377,10 @@ function Crud_Livros() {
                         <tr>
                             <td>-</td>
                             <td><input name="nome" value={novoLivro.nome} onChange={handleNovoLivroChange} /></td>
-                            <td><textarea name="descricao" value={novoLivro.descricao} onChange={handleNovoLivroChange} /></td>
-                            <td><input name="preco" type="number" value={novoLivro.preco} onChange={handleNovoLivroChange} /></td>
+                            <td><textarea name="descricao" value={novoLivro.descricao} onChange={handleNovoLivroChange} className="input-descricao" /></td>
+                            <td><input name="preco" type="number" value={novoLivro.preco} onChange={handleNovoLivroChange} min={0.01} step={0.01} /></td>
                             <td><input name="imagem" type="file" accept="image/*" onChange={handleNovoLivroFileChange} /></td>
-                            <td><input name="estoque" type="number" value={novoLivro.estoque} onChange={handleNovoLivroChange} /></td>
+                            <td><input name="estoque" type="number" value={novoLivro.estoque} onChange={handleNovoLivroChange} min={1} step={1} /></td>
                             <td>
                                 <i className="bi bi-check2-square icone-acao icone-salvar" title="Salvar" onClick={handleSalvarNovoLivro}></i>
                                 <i className="bi bi-x-square icone-acao icone-cancelar" title="Cancelar" onClick={handleCancelarNovoLivro}></i>
