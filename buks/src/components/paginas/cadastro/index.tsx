@@ -17,6 +17,68 @@ function Cadastro() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setMensagem('');
+
+        // Validação do nome
+        const nomeRegex = /^[A-Za-zÀ-ÿ\s]{3,20}$/;
+        if (!nomeRegex.test(form.nome)) {
+            showSwal({
+                icon: 'warning',
+                title: 'Nome inválido',
+                text: 'O nome deve ter entre 3 e 20 letras e conter apenas letras e espaços.'
+            });
+            return;
+        }
+
+        // Validação da data de nascimento
+        const hoje = new Date();
+        const dataNasc = new Date(form.dataNascimento);
+        if (!form.dataNascimento || dataNasc > hoje) {
+            showSwal({
+                icon: 'warning',
+                title: 'Data de nascimento inválida',
+                text: 'A data de nascimento não pode ser futura.'
+            });
+            return;
+        }
+
+        // Validação de senha forte
+        const senhaForteRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,}$/;
+        if (!senhaForteRegex.test(form.senha)) {
+            showSwal({
+                icon: 'warning',
+                title: 'Senha fraca',
+                text: 'A senha deve ter pelo menos 8 caracteres, incluindo maiúscula, minúscula, número e caractere especial.'
+            });
+            return;
+        }
+
+        // Validação de email
+        if (!form.email) {
+            showSwal({
+                icon: 'warning',
+                title: 'E-mail obrigatório',
+                text: 'O campo de e-mail não pode estar vazio.'
+            });
+            return;
+        }
+        if (!form.email.includes('@')) {
+            showSwal({
+                icon: 'warning',
+                title: 'E-mail inválido',
+                text: 'O e-mail deve conter o caractere @.'
+            });
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(form.email)) {
+            showSwal({
+                icon: 'warning',
+                title: 'E-mail inválido',
+                text: 'Digite um e-mail válido no formato: exemplo@dominio.com.'
+            });
+            return;
+        }
+
         try {
             const response = await fetch('http://localhost:3001/usuarios', {
                 method: 'POST',
@@ -77,7 +139,7 @@ function Cadastro() {
                             </div>
                             <div className="form-group">
                                 <h2 className="subtitulo">Data de Nascimento</h2>
-                                <input id="dataNascimento" type="date" className="form-control" placeholder="" required value={form.dataNascimento} onChange={handleChange} />
+                                <input id="dataNascimento" type="date" className="form-control" placeholder="" required value={form.dataNascimento} onChange={handleChange} max={new Date().toISOString().split('T')[0]} />
                             </div>
                             <div className="form-group">
                                 <h2 className="subtitulo">Email</h2>

@@ -50,6 +50,42 @@ function PedidoFormulario() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Validação do nome_destinatario
+    const nomeRegex = /^.{3,}$/;
+    if (!form.nome_destinatario || !nomeRegex.test(form.nome_destinatario)) {
+      Swal.fire('Atenção', 'O nome do destinatário é obrigatório e deve ter pelo menos 3 caracteres. Exemplo: Maria da Silva', 'warning');
+      return;
+    }
+    // Validação do telefone
+    if (!form.telefone) {
+      Swal.fire('Atenção', 'O telefone é obrigatório. Exemplo: (11) 91234-5678', 'warning');
+      return;
+    }
+    // Validação do CEP
+    const cepRegex = /^\d{5}-?\d{3}$/;
+    if (!form.cep || !cepRegex.test(form.cep)) {
+      Swal.fire('Atenção', 'O CEP é obrigatório e deve estar no formato 00000-000.', 'warning');
+      return;
+    }
+    // Validação do complemento
+    if (form.complemento && form.complemento.length > 0 && form.complemento.length < 3) {
+      Swal.fire('Atenção', 'O complemento deve ter pelo menos 3 caracteres. Exemplo: Apto 101, Fundos', 'warning');
+      return;
+    }
+    if (form.complemento && form.complemento.length > 100) {
+      Swal.fire('Atenção', 'O complemento deve ser preenchido corretamente. Exemplo: Apto 101, Fundos', 'warning');
+      return;
+    }
+    // Validação do número
+    if (!form.numero) {
+      Swal.fire('Atenção', 'O número é obrigatório. Exemplo: 123', 'warning');
+      return;
+    }
+    // Validação da rua
+    if (!form.rua || !nomeRegex.test(form.rua)) {
+      Swal.fire('Atenção', 'A rua é obrigatória e deve ter pelo menos 3 caracteres. Exemplo: Rua das Flores', 'warning');
+      return;
+    }
     // Gera a data atual no formato YYYY-MM-DD
     const dataAtual = new Date().toISOString().slice(0, 10);
     const pedido = { ...form, data: dataAtual };
@@ -112,27 +148,27 @@ function PedidoFormulario() {
           <form onSubmit={handleSubmit}>
             <div>
               <label className='texto t1'>Nome do Destinatário:</label>
-              <input type="text" name="nome_destinatario" value={form.nome_destinatario} onChange={handleChange} required />            
+              <input type="text" name="nome_destinatario" value={form.nome_destinatario} onChange={handleChange} />            
             </div>
             <div>
               <label className='texto t1'>Quantidade:</label>
-              <input type="number" name="quantidade" value={form.quantidade} min={1} max={produto?.estoque || 1} onChange={handleChange} required />
+              <input type="number" name="quantidade" value={form.quantidade} min={1} max={produto?.estoque || 1} onChange={handleChange} />
             </div>
             <div>
               <label className='texto t1'>Telefone:</label>
-              <input type="tel" name="telefone" value={form.telefone} onChange={handleChange} required />
+              <input type="tel" name="telefone" value={form.telefone} onChange={handleChange} />
             </div>
             <div>
               <label className='texto t1'>CEP:</label>
-              <input type="text" name="cep" value={form.cep} onChange={handleChange} maxLength={9} required />
+              <input type="text" name="cep" value={form.cep} onChange={handleChange} maxLength={9} />
             </div>
             <div>
               <label className='texto t1'>Rua:</label>
-              <input type="text" name="rua" value={form.rua} onChange={handleChange} required />
+              <input type="text" name="rua" value={form.rua} onChange={handleChange} />
             </div>
             <div>
               <label className='texto t1'>Número:</label>
-              <input type="text" name="numero" value={form.numero} onChange={handleChange} required />
+              <input type="text" name="numero" value={form.numero} onChange={handleChange} />
             </div>
             <div>
               <label className='texto t1'>Complemento:</label>

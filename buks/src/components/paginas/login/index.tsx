@@ -12,6 +12,32 @@ function Login() {
 
     const login = async (e: React.FormEvent) => {
         e.preventDefault();
+        // Validação de email
+        if (!email) {
+            showSwal({
+                icon: 'warning',
+                title: 'E-mail obrigatório',
+                text: 'O campo de e-mail não pode estar vazio.'
+            });
+            return;
+        }
+        if (!email.includes('@')) {
+            showSwal({
+                icon: 'warning',
+                title: 'E-mail inválido',
+                text: 'O e-mail deve conter o caractere @.'
+            });
+            return;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showSwal({
+                icon: 'warning',
+                title: 'E-mail inválido',
+                text: 'Digite um e-mail válido no formato: exemplo@dominio.com.'
+            });
+            return;
+        }
         try {
             const response = await fetch('http://localhost:3001/usuarios/login', {
                 method: 'POST',
