@@ -1,3 +1,4 @@
 .card-autor{width: 150px; display: block;}
-.card-autor .imagem-container{width: 100% ;background: var(--verde-1); margin: 0 auto; aspect-ratio: 1/1; border-radius: 100%;}
-.card-autor .nome{text-align: center; margin: 10px 0 0; color: var(--branco);}
+.card-autor .imagem-container{width: 100% ;background: var(--verde-1); margin: 0 auto; aspect-ratio: 1/1; border-radius: 100%; overflow: hidden;}
+.card-autor .imagem{object-fit: cover;}
+.card-autor .nome{text-align: center; margin: 10px 0 0; color: var(--branco); }

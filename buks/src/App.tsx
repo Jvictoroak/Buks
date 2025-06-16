@@ -7,6 +7,7 @@ import Cabecalho from './components/sections/header';
 import Rodape from './components/sections/footer';
 import Home from './components/paginas/home';
 import Cadastro from './components/paginas/cadastro';
+import Contato from './components/paginas/contato'; 
 import Login from './components/paginas/login';
 import Produtos from './components/paginas/produto';
 import Crud_Livros from './components/paginas/crud_livros';
@@ -41,6 +42,7 @@ function AppContent() {
         <Route path="/pedido" element={<PedidoFormulario/>} />
         <Route path="/pedido" element={<PedidoFormulario/>} />
         <Route path="/meus_pedidos" element={<Meus_pedidos/>} />
+        <Route path="/contato" element={<Contato/>} />
       </Routes>
       <Rodape />
     </>

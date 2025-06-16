@@ -55,10 +55,10 @@ export default function Home() {
                 <div className="conteudo-1140">
                     <div className="conteudo">
                         <div className="cards">
-                            <div className="card"><div className="sub-titulo t1"><p>Categoria</p></div></div>
-                            <div className="card"><div className="sub-titulo t1"><p>Categoria</p></div></div>
-                            <div className="card"><div className="sub-titulo t1"><p>Categoria</p></div></div>
-                            <div className="card"><div className="sub-titulo t1"><p>Categoria</p></div></div>
+                            <div className="card"><div className="sub-titulo t1"><p>Fantasia</p></div></div>
+                            <div className="card"><div className="sub-titulo t1"><p>Romance</p></div></div>
+                            <div className="card"><div className="sub-titulo t1"><p>Ficção</p></div></div>
+                            <div className="card"><div className="sub-titulo t1"><p>Drama</p></div></div>
                         </div>
                     </div>
                 </div>
@@ -85,14 +85,39 @@ export default function Home() {
                     <div className="conteudo">
                         <div className="titulo t1"><p>Nossos Autores</p></div>
                         <div className="cards">
-                            {[...Array(5)].map((_, i) => (
+                           
                                 <CardAutor
-                                    key={i}
-                                    nome={`Autor ${i + 1}`}
-                                    imagem={''}
-                                    link={toUrlFriendly(`autor-${i + 1}`)}
+                                    key={0}
+                                    nome={`Agata Christie`}
+                                    imagem={'../../../assets/img/Agatha.jpeg'}
+                                    link={""}
                                 />
-                            ))}
+                                <CardAutor
+                                    key={1}
+                                    nome={`J.K. Rowling`}
+                                    imagem={'../../../assets/img/jk_roling.jpeg'}
+                                    link={""}
+                                />
+                                <CardAutor
+                                    key={2}
+                                    nome={`Charles Darwin`}
+                                    imagem={'../../../assets/img/darwin.jpeg'}
+                                    link={""}
+                                />
+                                <CardAutor
+                                    key={3}
+                                    nome={`Syou Ishida`}
+                                    imagem={'../../../assets/img/ishida.jpeg'}
+                                    link={""}
+                                />
+                                <CardAutor
+                                    key={4}
+                                    nome={`David Goggins`}
+                                    imagem={'../../../assets/img/goggins.webp'}
+                                    link={""}
+                                />
+                                
+        
                         </div>
                     </div>
                 </div>
